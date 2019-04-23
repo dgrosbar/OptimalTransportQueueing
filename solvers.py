@@ -78,16 +78,16 @@ def fast_primal_dual_non_bipartite(mc, ms, mcz, msz, pc, ps, lamda_s, lamda_c,
 
             if i == 0:
 
-                print 'starting fast primal dual gradient descent'
+                print('starting fast primal dual gradient descent')
 
             if i > 0 and i % check_every == 0:
 
 
-                print 'iteration',  i
+                print('iteration',  i)
                 opt_gap, opt_gap_pct = check_optimality_gap()
                 feas_gap = check_feasibility_gap()
-                print 'optimality gap pct is: ', opt_gap_pct
-                print 'feasiblity gap is: ', feas_gap
+                print('optimality gap pct is: ', opt_gap_pct)
+                print('feasiblity gap is: ', feas_gap)
                 if opt_gap_pct < epsilon and feas_gap < epsilon:
 
                     break
@@ -186,16 +186,16 @@ def fast_primal_dual_non_bipartite(mc, ms, mcz, msz, pc, ps, lamda_s, lamda_c,
 
             if i == 0:
 
-                print 'starting fast primal dual gradient descent'
+                print('starting fast primal dual gradient descent')
 
             if i > 0 and i % check_every == 0:
 
 
-                print 'iteration',  i
+                print('iteration',  i)
                 opt_gap, opt_gap_pct = check_optimality_gap()
                 feas_gap = check_feasibility_gap()
-                print 'optimality gap pct is: ', opt_gap_pct
-                print 'feasiblity gap is: ', feas_gap
+                print('optimality gap pct is: ', opt_gap_pct)
+                print('feasiblity gap is: ', feas_gap)
                 if opt_gap_pct < epsilon and feas_gap < epsilon:
 
                     break
@@ -297,16 +297,16 @@ def fast_primal_dual_algorithm_grid(mc, ms, mcz, msz, pc, ps, lamda_s, lamda_c,
 
             if i == 0:
 
-                print 'starting fast primal dual gradient descent'
+                print('starting fast primal dual gradient descent')
 
             if i > 0 and i % check_every == 0:
 
 
-                print 'iteration',  i
+                print('iteration',  i)
                 opt_gap, opt_gap_pct = check_optimality_gap()
                 feas_gap = check_feasibility_gap()
-                print 'optimality gap pct is: ', opt_gap_pct
-                print 'feasiblity gap is: ', feas_gap
+                print('optimality gap pct is: ', opt_gap_pct)
+                print('feasiblity gap is: ', feas_gap)
                 if opt_gap_pct < epsilon and feas_gap < epsilon:
 
                     break
@@ -405,16 +405,16 @@ def fast_primal_dual_algorithm_grid(mc, ms, mcz, msz, pc, ps, lamda_s, lamda_c,
 
             if i == 0:
 
-                print 'starting fast primal dual gradient descent'
+                print('starting fast primal dual gradient descent')
 
             if i > 0 and i % check_every == 0:
 
 
-                print 'iteration',  i
+                print('iteration',  i)
                 opt_gap, opt_gap_pct = check_optimality_gap()
                 feas_gap = check_feasibility_gap()
-                print 'optimality gap pct is: ', opt_gap_pct
-                print 'feasiblity gap is: ', feas_gap
+                print('optimality gap pct is: ', opt_gap_pct)
+                print('feasiblity gap is: ', feas_gap)
                 if opt_gap_pct < epsilon and feas_gap < epsilon:
 
                     break
@@ -469,9 +469,8 @@ def strange_shelikhovskii(p, q, a, b, check_every=None, max_iter=10**5, epsilon=
             p = sps.diags(a/p.sum(axis=1).A.ravel()).dot(p)
             p = p.dot(sps.diags(b/(p.multiply(q)).sum(axis=0).A.ravel()))
             if k > 0 and k % check_every == 0:
-                print k
-                print max(np.max(np.abs((b - (p.multiply(q)).sum(axis=0)))/b[:np.newaxis]),
-                          np.max(np.abs((p.sum(axis=1).T - a))/a[:np.newaxis]))
+                print(k)
+                print(max(np.max(np.abs((b - (p.multiply(q)).sum(axis=0)))/b[:np.newaxis]), np.max(np.abs((p.sum(axis=1).T - a))/a[:np.newaxis])))
                 if max(np.max(np.abs((b - (p.multiply(q)).sum(axis=0)))/b[:np.newaxis]),
                        np.max(np.abs((p.sum(axis=1).T - a))/a[:np.newaxis])) < epsilon:
                     flag = False
@@ -484,7 +483,7 @@ def strange_shelikhovskii(p, q, a, b, check_every=None, max_iter=10**5, epsilon=
             p = (p.transpose() * a/p.sum(axis=1)).transpose()
             p = p * b/p.sum(axis=0)
             if k > 0 and k % check_every == 0:
-                print k, max(max(abs(b - p.sum(axis=0))/b), max(abs(a - p.sum(axis=1))/a))
+                print(k, max(max(abs(b - p.sum(axis=0))/b), max(abs(a - p.sum(axis=1))/a)))
                 if max(max(abs(b - p.sum(axis=0))/b), max(abs(a - p.sum(axis=1))/a)) < epsilon:
                     flag = False
             k += 1
@@ -512,9 +511,9 @@ def shelikhovskii(p, a, b, check_every=10**3, max_iter=10**6, epsilon=10**-6):
             p = sps.diags(a/p.sum(axis=1).A.ravel()).dot(p)
             p = p.dot(sps.diags(b/p.sum(axis=0).A.ravel()))
             if k > 0 and k % check_every == 0:
-                print k
-                print max(np.max(np.abs((b - p.sum(axis=0)))/b[:np.newaxis]),
-                       np.max(np.abs((p.sum(axis=1).T - a))/a[:np.newaxis]))
+                print(k)
+                print(max(np.max(np.abs((b - p.sum(axis=0)))/b[:np.newaxis]),
+                       np.max(np.abs((p.sum(axis=1).T - a))/a[:np.newaxis])))
                 if max(np.max(np.abs((b - p.sum(axis=0)))/b[:np.newaxis]),
                        np.max(np.abs((p.sum(axis=1).T - a))/a[:np.newaxis])) < epsilon:
                     flag = False
@@ -527,7 +526,7 @@ def shelikhovskii(p, a, b, check_every=10**3, max_iter=10**6, epsilon=10**-6):
             p = (p.transpose() * a/p.sum(axis=1)).transpose()
             p = p * b/p.sum(axis=0)
             if k > 0 and k % check_every == 0:
-                print k, max(max(abs(b - p.sum(axis=0))/b), max(abs(a - p.sum(axis=1))/a))
+                print(k, max(max(abs(b - p.sum(axis=0))/b), max(abs(a - p.sum(axis=1))/a)))
                 if max(max(abs(b - p.sum(axis=0))/b), max(abs(a - p.sum(axis=1))/a)) < epsilon:
                     flag = False
             k += 1
@@ -554,7 +553,7 @@ def entropy_approximation_solver(alpha_v, beta_v, q):
         if not sps.isspmatrix(z):
             z = sps.csr_matrix(z)
             densify = True
-            print 'densifying'
+            print('densifying')
         data = zip(*[(np.exp(z_cs), np.exp(-z_cs)) for z_cs in z.data])
         p = sps.csr_matrix((data[0], z.indices, z.indptr))
         q = sps.csr_matrix((data[1], z.indices, z.indptr))
@@ -585,7 +584,7 @@ def entropy_approximation_solver(alpha_v, beta_v, q):
 
         if not sps.isspmatrix(z):
             z = sps.csr_matrix(z)
-            print 'sprsifying'
+            print('sprsifying')
         p, q = calc_p_q(z)
         cust_entropy = np.asscalar((beta.dot(sps_plog(p))).sum(axis=1).sum(axis=0))
         serv_entropy = np.asscalar((sps_plog(q).dot(alpha)).sum(axis=1).sum(axis=0))
@@ -611,26 +610,26 @@ def entropy_approximation_solver(alpha_v, beta_v, q):
                 if np.max(np.abs(f.keywords['beta'].dot(p) - q.dot(f.keywords['alpha']))) < eps:
                     return x
                 elif prt:
-                    print 'cur_val = ', np.max(np.abs(f.keywords['beta'].dot(p) - q.dot(f.keywords['alpha'])))
-                    print 'prev_val = ', prev_f
+                    print('cur_val = ', np.max(np.abs(f.keywords['beta'].dot(p) - q.dot(f.keywords['alpha']))))
+                    print('prev_val = ', prev_f)
                     p, q = calc_p_q(x)
-                    print 'primal_val = ', dms_entropy(p=p, q=q, **f.keywords)
-                    print 'duality_gap = ', dms_entropy(p=p, q=q, **f.keywords) - cur_f
-                    print 'improvement percentage = ', 100.0 * np.abs(1 - (cur_f/prev_f))
+                    print('primal_val = ', dms_entropy(p=p, q=q, **f.keywords))
+                    print('duality_gap = ', dms_entropy(p=p, q=q, **f.keywords) - cur_f)
+                    print('improvement percentage = ', 100.0 * np.abs(1 - (cur_f/prev_f)))
                     cur_improve = np.abs(1 - (cur_f/prev_f))
-                    print 'improvement threshold%= ', 100*improve_threshold
+                    print('improvement threshold%= ', 100*improve_threshold)
                     if cur_improve <= improve_threshold:
                         a = a/2
                         improve_threshold = cur_improve/10.0
-                        print 'reducing a'
-                        print 'old a:', 2*a, 'new a:', a
-                    print 'p'
-                    print p
-                    print 'q'
-                    print q
-                    print 'max feasibility gap'
-                    #print f.keywords['beta'].dot(p) - q.dot(f.keywords['alpha'])
-                    print np.max(f.keywords['beta'].dot(p) - q.dot(f.keywords['alpha']))
+                        print('reducing a')
+                        print('old a:', 2*a, 'new a:', a)
+                    print('p')
+                    print(p)
+                    print('q')
+                    print(q)
+                    print('max feasibility gap')
+                    #print(f.keywords['beta'].dot(p) - q.dot(f.keywords['alpha']))
+                    print(np.max(f.keywords['beta'].dot(p) - q.dot(f.keywords['alpha'])))
                 prev_f = cur_f
         return x
 
@@ -644,8 +643,8 @@ def entropy_approximation_solver(alpha_v, beta_v, q):
 
     z = gradient_descent(x=z0, f=dms_ent_dual_p, gf=grad_dms_ent_dual_p,
                          a=0.2, eps=10**-5, max_iter=2*10**5, check_point=10**3)
-    print 'now this is z'
-    print z
+    print('now this is z')
+    print(z)
     #z, ent, d = fmin_l_bfgs_b(dms_ent_dual_p, z.todense(), grad_dms_ent_dual_p)
 
     p, q = calc_p_q(z)
@@ -675,7 +674,7 @@ def bipartite_entropy_approximation_solver(alpha_v, beta_v, q):
         if not sps.isspmatrix(z):
             z = sps.csr_matrix(z)
             densify = True
-            print 'densifying'
+            print('densifying')
         data = zip(*[(np.exp(z_cs), np.exp(-z_cs)) for z_cs in z.data])
         p = sps.csr_matrix((data[0], z.indices, z.indptr))
         q = sps.csr_matrix((data[1], z.indices, z.indptr))
@@ -706,7 +705,7 @@ def bipartite_entropy_approximation_solver(alpha_v, beta_v, q):
 
         if not sps.isspmatrix(z):
             z = sps.csr_matrix(z)
-            print 'sprsifying'
+            print('sprsifying')
         p, q = calc_p_q(z)
         cust_entropy = np.asscalar((beta.dot(sps_plog(p))).sum(axis=1).sum(axis=0))
         serv_entropy = np.asscalar((sps_plog(q).dot(alpha)).sum(axis=1).sum(axis=0))
@@ -732,26 +731,26 @@ def bipartite_entropy_approximation_solver(alpha_v, beta_v, q):
                 if np.max(np.abs(f.keywords['beta'].dot(p) - q.dot(f.keywords['alpha']))) < eps:
                     return x
                 elif prt:
-                    print 'cur_val = ', np.max(np.abs(f.keywords['beta'].dot(p) - q.dot(f.keywords['alpha'])))
-                    print 'prev_val = ', prev_f
+                    print('cur_val = ', np.max(np.abs(f.keywords['beta'].dot(p) - q.dot(f.keywords['alpha']))))
+                    print('prev_val = ', prev_f)
                     p, q = calc_p_q(x)
-                    print 'primal_val = ', dms_entropy(p=p, q=q, **f.keywords)
-                    print 'duality_gap = ', dms_entropy(p=p, q=q, **f.keywords) - cur_f
-                    print 'improvement percentage = ', 100.0 * np.abs(1 - (cur_f/prev_f))
+                    print('primal_val = ', dms_entropy(p=p, q=q, **f.keywords))
+                    print('duality_gap = ', dms_entropy(p=p, q=q, **f.keywords) - cur_f)
+                    print('improvement percentage = ', 100.0 * np.abs(1 - (cur_f/prev_f)))
                     cur_improve = np.abs(1 - (cur_f/prev_f))
-                    print 'improvement threshold%= ', 100*improve_threshold
+                    print('improvement threshold%= ', 100*improve_threshold)
                     if cur_improve <= improve_threshold:
                         a = a/2
                         improve_threshold = cur_improve/10.0
-                        print 'reducing a'
-                        print 'old a:', 2*a, 'new a:', a
-                    print 'p'
-                    print p
-                    print 'q'
-                    print q
-                    print 'max feasibility gap'
-                    #print f.keywords['beta'].dot(p) - q.dot(f.keywords['alpha'])
-                    print np.max(f.keywords['beta'].dot(p) - q.dot(f.keywords['alpha']))
+                        print('reducing a')
+                        print('old a:', 2*a, 'new a:', a)
+                    print('p')
+                    print(p)
+                    print('q')
+                    print(q)
+                    print('max feasibility gap')
+                    #print(f.keywords['beta'].dot(p) - q.dot(f.keywords['alpha']))
+                    print(np.max(f.keywords['beta'].dot(p) - q.dot(f.keywords['alpha'])))
                 prev_f = cur_f
         return x
 
@@ -765,8 +764,8 @@ def bipartite_entropy_approximation_solver(alpha_v, beta_v, q):
 
     z = gradient_descent(x=z0, f=dms_ent_dual_p, gf=grad_dms_ent_dual_p,
                          a=0.2, eps=10**-5, max_iter=2*10**5, check_point=10**3)
-    print 'now this is z'
-    print z
+    print('now this is z')
+    print(z)
     #z, ent, d = fmin_l_bfgs_b(dms_ent_dual_p, z.todense(), grad_dms_ent_dual_p)
 
     p, q = calc_p_q(z)
@@ -846,7 +845,7 @@ def solve_maxmin(alpha, beta, q, prt=False, prob_type='MaxMin'):
         senses = 'L'*(2*m) + 'L'*ns + 'E'*nc
         rhs = [0.0]*(2*m) + [beta[sj] for sj in rns] + [1.0]*nc
 
-    print time()-s, 'seconds to construct model '
+    print(time()-s, 'seconds to construct model ')
     s = time()
     prob = cplex.Cplex()
     if prob_type == 'MaxMin':
@@ -859,26 +858,26 @@ def solve_maxmin(alpha, beta, q, prt=False, prob_type='MaxMin'):
 
 
     if prt:
-        print 'obj:', len(obj), obj
-        print 'lb:', len(lb), lb
-        print 'ub:', len(ub), ub
-        print 'col_names:', len(col_names), col_names
-        print 'type:', len(types), types
-        print 'const_coeff:', len(constraints_coeff), constraints_coeff
-        print 'row_names:', len(row_names), row_names
-        print 'rhs:', len(rhs)
+        print('obj:', len(obj), obj)
+        print('lb:', len(lb), lb)
+        print('ub:', len(ub), ub)
+        print('col_names:', len(col_names), col_names)
+        print('type:', len(types), types)
+        print('const_coeff:', len(constraints_coeff), constraints_coeff)
+        print('row_names:', len(row_names), row_names)
+        print('rhs:', len(rhs))
 
     prob.linear_constraints.add(rhs=rhs, senses=senses, names=row_names)
     prob.variables.add(obj=obj, lb=lb, ub=ub, names=col_names, types=types, columns=constraints_coeff)
 
-    print time()-s, 'seconds to readin the model '
+    print(time()-s, 'seconds to readin the model ')
     s = time()
 
     if prt:
-        print 'row_names:'
-        print row_names
-        print 'constraints:'
-        print constraints_coeff
+        print('row_names:')
+        print(row_names)
+        print('constraints:')
+        print(constraints_coeff)
 
     try:
         prob.solve()
@@ -892,7 +891,7 @@ def solve_maxmin(alpha, beta, q, prt=False, prob_type='MaxMin'):
     slack = prob.solution.get_linear_slacks()
     x = prob.solution.get_values()
 
-    print time()-s, 'seconds to solve model'
+    print(time()-s, 'seconds to solve model')
 
     s = time()
     alpha_m = sps.csr_matrix((alpha, np.arange(len(alpha)), np.arange(len(alpha)+1)))
@@ -903,7 +902,7 @@ def solve_maxmin(alpha, beta, q, prt=False, prob_type='MaxMin'):
     for qual,res in zip(col_names, x):
 
         if qual in {'min_p', 'max_p'}:
-            print res
+            print(res)
         else:
             qual = translator[qual]
             r[qual[0], qual[1]] = alpha[qual[0]]*res
@@ -943,8 +942,8 @@ def grid_workload_decomposition(lamda, q, path=None, nc=None):
                  ' 0'+'\n')
     inputf.write('n 0 s'+'\n')
     inputf.write('n '+str(num_nodes-1)+' t'+'\n')
-    # print 'rnd', rnd
-    # print 'lamda', lamda
+    # print('rnd', rnd)
+    # print('lamda', lamda)
     for ci in rnd:
         ub = lamda[ci-1]
         inputf.write('a ' + '0' + ' ' + str(ci) + ' ' + str(ub) + ' ' + '0.0' + '\n')
@@ -983,7 +982,7 @@ def grid_workload_decomposition(lamda, q, path=None, nc=None):
         if data[0] == 'l':
             rank = 0
             for bp in data[1:-1]:
-                #print float(bp)
+                #print(float(bp))
                 workload_sets[rank] = {'workload': 1-float(bp), 'demnand_nodes': [], 'supply_nodes': []}
                 bps.append(1-float(bp))
                 rank += 1
@@ -1001,7 +1000,7 @@ def grid_workload_decomposition(lamda, q, path=None, nc=None):
                         singleton = False
                         break
                 if singleton:
-                    print node, 'single'
+                    print(node, 'single')
                     return
 
     return workload_sets
@@ -1090,11 +1089,11 @@ def bipartite_workload_decomposition(Q, lamda, mu, path=None):
                         singleton = False
                         break
                 if singleton:
-                    print node, 'single'
+                    print(node, 'single')
                     return None, None, None
-    print '-----------------'
-    print 'rho_n', rho_n
-    print '-----------------'
+    print('-----------------')
+    print('rho_n', rho_n)
+    print('-----------------')
 
     return workload_sets, np.array(rho_m), np.array(rho_n)
 
@@ -1215,7 +1214,7 @@ def greenkhorn_with_q(a, b, M, Q, reg, numItermax=10000, stopThr=1e-9, verbose=F
 
             if k % 2 == 0:
                 if k > 0:
-                    print time() - s
+                    print(time() - s)
                 s = time()
 
             i = np.argmax(np.abs(viol_row))
@@ -1311,7 +1310,7 @@ def greenkhorn_with_q(a, b, M, Q, reg, numItermax=10000, stopThr=1e-9, verbose=F
 
             if i % 2 == 0:
                 if i > 0:
-                    print time() - s
+                    print(time() - s)
                 s = time()
 
             i_1 = np.argmax(np.abs(viol))
@@ -1335,7 +1334,7 @@ def greenkhorn_with_q(a, b, M, Q, reg, numItermax=10000, stopThr=1e-9, verbose=F
                 viol += (-old_v + v[i_2]) * K[:, i_2] * u
                 viol_2[i_2] = v[i_2] * K[:, i_2].dot(u) - b[i_2]
 
-                #print('b',np.max(abs(aviol -viol)),np.max(abs(aviol_2 - viol_2)))
+                #print('b',np.max(abs(aviol -viol)),np.max(abs(aviol_2 - viol_2))))
 
             if stopThr_val <= stopThr:
                 break
@@ -1397,10 +1396,10 @@ def fast_primal_dual_algorithm(A, b, z, pi0=None, act_rows=None , check_every=10
         opt_gap, opt_gap_pct = check_optimality_gap()
         feas_gap = check_feasibility_gap()
         if prt or i % 10**5 == 0:
-            print 'iteration',  i
-            print 'optimality gap is:', opt_gap
-            print 'optimality gap pct is: ', opt_gap_pct
-            print 'feasibility gap is: ', feas_gap
+            print('iteration',  i)
+            print('optimality gap is:', opt_gap)
+            print('optimality gap pct is: ', opt_gap_pct)
+            print('feasibility gap is: ', feas_gap)
         if opt_gap_pct < epsilon:
             if feas_gap < epsilon:
                 return True
@@ -1417,7 +1416,7 @@ def fast_primal_dual_algorithm(A, b, z, pi0=None, act_rows=None , check_every=10
         L = (1.0/v) * np.amin(np.abs(A.sum(1)))
 
 
-    print 'L', L
+    print('L', L)
 
 
     for i in np.arange(max_iter):
@@ -1427,47 +1426,47 @@ def fast_primal_dual_algorithm(A, b, z, pi0=None, act_rows=None , check_every=10
 
         if i == 0:
 
-            print 'starting fast primal dual gradient descent'
+            print('starting fast primal dual gradient descent')
             s = time()
 
         #pi_k = pi0 if i == 0 and pi0 is not None else ze*np.exp(At.dot(lamda))
-        #print i
-        # print '-------------------------------'
-        # # print 'prev_pi_hat'
-        # # print prev_pi_hat.reshape((4, 3))
-        # # print 'pi_hat'
-        # # print pi_hat.reshape((4, 3))
-        # # print 'prev_col_sum'
-        # # print prev_pi_hat.reshape((4, 3)).sum(0)
-        # # print 'cur_col_sum'
-        # # print pi_hat.reshape((4, 3)).sum(0)
-        # # print 'prev_row_sum'
-        # # print prev_pi_hat.reshape((4, 3)).sum(1)
-        # # print 'cur_row_sum'
-        # # print pi_hat.reshape((4, 3)).sum(1)
-        # # print 'prev col violation'
-        # # print b[4:7] - prev_pi_hat.reshape((4, 3)).sum(0)
-        # print 'cur col violation'
-        # print b[4:7] - pi_hat.reshape((4, 3)).sum(0)
-        # # print 'prev row violation'
-        # # print b[:4] - prev_pi_hat.reshape((4, 3)).sum(1)
-        # print 'cur row violation'
-        # print b[:4] - pi_hat.reshape((4, 3)).sum(1)
-        # # print 'gap'
-        # # print b - A.dot(pi_hat)
-        # # print 'prev_gap'
-        # # print prev_gap
-        # print 'lamda'
-        # print lamda
-        # # print 'prev_lamda'
-        # # print prev_lamda
+        #print(i)
+        # print('-------------------------------')
+        # # print('prev_pi_hat')
+        # # print(prev_pi_hat.reshape((4, 3)))
+        # # print('pi_hat')
+        # # print(pi_hat.reshape((4, 3)))
+        # # print('prev_col_sum')
+        # # print(prev_pi_hat.reshape((4, 3)).sum(0))
+        # # print('cur_col_sum')
+        # # print(pi_hat.reshape((4, 3)).sum(0))
+        # # print('prev_row_sum')
+        # # print(prev_pi_hat.reshape((4, 3)).sum(1))
+        # # print('cur_row_sum')
+        # # print(pi_hat.reshape((4, 3)).sum(1))
+        # # print('prev col violation')
+        # # print(b[4:7] - prev_pi_hat.reshape((4, 3)).sum(0))
+        # print('cur col violation')
+        # print(b[4:7] - pi_hat.reshape((4, 3)).sum(0))
+        # # print('prev row violation')
+        # # print(b[:4] - prev_pi_hat.reshape((4, 3)).sum(1))
+        # print('cur row violation')
+        # print(b[:4] - pi_hat.reshape((4, 3)).sum(1))
+        # # print('gap')
+        # # print(b - A.dot(pi_hat))
+        # # print('prev_gap')
+        # # print(prev_gap)
+        # print('lamda')
+        # print(lamda)
+        # # print('prev_lamda')
+        # # print(prev_lamda)
         #
         # # prev_pi_hat = pi_hat
         # # prev_gap = b - A.dot(pi_hat)
         # prev_lamda = lamda
         pi_k = ze*np.exp(-At.dot(lamda))
 
-        #print pi_k.sum()
+        #print(pi_k.sum())
         pi_hat = tau * pi_k + (1.0 - tau) * pi_hat
 
         if i > 0 and i % check_every == 0:
@@ -1481,8 +1480,8 @@ def fast_primal_dual_algorithm(A, b, z, pi0=None, act_rows=None , check_every=10
         lamda = (tau * zeta) + (1.0 - tau) * eta
 
 
-    print 'ended fast primal-dual algorithm after ' + str(i) + ' iterations'
-    print 'run time:', time() - s, 'seconds'
+    print('ended fast primal-dual algorithm after ' + str(i) + ' iterations')
+    print('run time:', time() - s, 'seconds')
     return pi_hat, lamda
 
 
@@ -1513,23 +1512,23 @@ if __name__ == '__main__':
     lamda_s = np.array([2,4,1,1,2])
     #
     # p = shelikhovskii(v, a, b)
-    # print p
-    # print p.sum(axis=0)
-    # print p.sum(axis=1)
+    # print(p)
+    # print(p.sum(axis=0))
+    # print(p.sum(axis=1))
     #
     # p = strange_shelikhovskii(v, q, a, b)
-    # print p
-    # print p.sum(axis=0)
-    # print p.sum(axis=1)
+    # print(p)
+    # print(p.sum(axis=0))
+    # print(p.sum(axis=1))
 
     pi_c, pi_s, pi_cz, pi_sz = fast_primal_dual_algorithm_grid(-mc, -ms, mcz, msz, ps, pc, lamda_s, lamda_c)
 
-    print pi_c
-    print pi_cz
-    print (pi_c.multiply(ps).sum(axis=1).A.ravel() + pi_cz)
+    print(pi_c)
+    print(pi_cz)
+    print((pi_c.multiply(ps).sum(axis=1).A.ravel() + pi_cz))
 
-    print pi_s
-    print pi_sz
-    print (pi_s.multiply(pc).sum(axis=0).A.ravel() + pi_sz)
+    print(pi_s)
+    print(pi_sz)
+    print((pi_s.multiply(pc).sum(axis=0).A.ravel() + pi_sz))
 
 

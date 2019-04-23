@@ -49,7 +49,7 @@ def k_chain(nc, ns, k, sparse=True):
 
     if sparse:
         diags = [[1]*ns]*(2*k-1)
-        offsets = range(k) + [-nc+i for i in range(1, k, 1)]
+        offsets = list(range(k)) + [-nc+i for i in range(1, k, 1)]
         return sps.csr_matrix(sps.diags(diags, offsets, (nc, ns)))
     else:
         rnc = range(nc)
@@ -122,18 +122,18 @@ def undirected_grid_2d_bipartie_graph2(m, n, d=1, r=1,
 
     p = sps.vstack((grid_adj_mat, np.ones((1, m*n))))
     d_s_gap = np.asscalar(lamda_s.sum() - (lamda_d*0.95).sum())
-    print 'starting shelikovskii'
+    print('starting shelikovskii')
     s = time()
     pi = shelikhovskii(p, np.hstack((lamda_d*0.95, np.array([d_s_gap]))), lamda_s)
-    print time() - s, ' sec to run shelikovskii'
+    print(time() - s, ' sec to run shelikovskii')
     p = sps.csr_matrix(p)
-    print 'starting_primal_dual'
+    print('starting_primal_dual')
 
     s = time()
-    print time() - s, ' sec to run primal dual'
+    print(time() - s, ' sec to run primal dual')
 
     r = pi[m*n:].todense()
-    #print np.min(r)
+    #print(np.min(r))
     pi = pi[:-1, :]
     max_ent_workload = np.zeros((m, n))
     rho_s = ((lamda_s - r)/lamda_s)
@@ -144,7 +144,7 @@ def undirected_grid_2d_bipartie_graph2(m, n, d=1, r=1,
     c = np.exp(-1*(sps_plog(pi.dot(sps.diags(1/lamda_s)))).dot(sps.diags(lamda_s)).sum(axis=1))
     rho_c = (sps.diags(1/(0.95*lamda_d)).dot(pi)).dot(rho_s.transpose())
 
-    #print c
+    #print(c)
 
     sakasegawa_ct = []
     for i in range(m*n):
@@ -282,7 +282,7 @@ def supply_demand_grid(m, n, d=1, r=1,
     msd = 1.0   # revenue from matching s with d
     cd = 5.0  # loss from demand d canceling
     u = 0
-    print 'l_norem', l_norm
+    print('l_norem', l_norm)
     for i in range(m):
         for j in range(n):
             for o in range(i, min(m, i + d), 1):
@@ -297,7 +297,7 @@ def supply_demand_grid(m, n, d=1, r=1,
                         g.add_edge((i, j), (o, k), m=md, pd=pd, ps=ps)
                         u += 1
 
-    print 'u: ', u
+    print('u: ', u)
 
     nodes = list(g.nodes())
 
@@ -390,10 +390,10 @@ def undirected_full_2d_bipartie_graph(m, n, d=1, r=1,
 
     p = sps.vstack((grid_adj_mat, np.ones((1, m*n))))
     d_s_gap = np.asscalar(lamda_s.sum() - (lamda_d*0.95).sum())
-    print 'starting shelikovskii'
+    print('starting shelikovskii')
     pi = shelikhovskii(p, np.hstack((lamda_d*0.95, np.array([d_s_gap]))), lamda_s)
     r = pi[m*n:].todense()
-    #print np.min(r)
+    #print(np.min(r))
     pi = pi[:-1, :]
     max_ent_workload = np.zeros((m, n))
     rho_s = ((lamda_s - r)/lamda_s)
@@ -404,7 +404,7 @@ def undirected_full_2d_bipartie_graph(m, n, d=1, r=1,
     c = np.exp(-1*(sps_plog(pi.dot(sps.diags(1/lamda_s)))).dot(sps.diags(lamda_s)).sum(axis=1))
     rho_c = (sps.diags(1/(0.95*lamda_d)).dot(pi)).dot(rho_s.transpose())
 
-    #print c
+    #print(c)
 
     sakasegawa_ct = []
     for i in range(m*n):
@@ -493,8 +493,8 @@ if __name__ == '__main__':
                                           num_of_centers_supply=None, num_of_centers_demand=None,
                                           l_norm=np.inf, plot=False, alpha=1.0)
     for key, val in res.iteritems():
-        print key
-        print val
+        print(key)
+        print(val)
 
 # p = sps.vstack((g['grid_adj_mat'], np.ones((1, m*n))))
 # d_s_gap = np.asscalar(g['lamda_s'].sum() - (g['lamda_d']*0.95).sum())

@@ -71,7 +71,7 @@ def contur(func):
     #CV=ax.contourf(X, Y, logZ, cmap=cmap, levels=np.arange(-5,log_sakasegawa(1,0.99),0.5), extend='max') # negative contours will be dashed by default)
     #CS  = ax.contour(X, Y, Z, levels=[x for x in np.arange(0,int(sakasegawa(1,0.99)),5)],colors='k')#, levels=[sakasegawa(128,x) for x in np.arange(0.9,0.99,0.005) ],colors='w')
     CNFB = ax.contour(X, Y, Z, levels=[sakasegawa(10,x) for x in np.arange(0.5, 1.0,0.01)],colors='grey',linewidths=3)
-    #print([sakasegawa(10,x) for x in np.arange(0.75,1.0,0.01)])
+    #print(([sakasegawa(10,x) for x in np.arange(0.75,1.0,0.01)]))
     #CNF = ax.contour(X, Y, Z, levels=[sakasegawa(10,x) for x in np.arange(0.866,1,0.2)],colors='w',linewidths=3)
     #ax.contour(X, Y, Z, levels=[sakasegawa(6,x) for x in [0.865,0.867]],colors='b',linewidths=5)
     #ax.scatter(x=[0.866 for i in range(0,60,1)],y=[float(i)/10 for i in range(0,60,1)],color='k',s=1)
@@ -136,11 +136,11 @@ def service_time_dependency_experiment():
     fig1 = plt.figure()
     ax1 = SubplotHost(fig1, 111)
     fig1.add_subplot(ax1)
-    print reses_ij['phi']
+    print( reses_ij['phi'])
     # data = reses_ij[(reses_ij['rho'] > 0.99) &
     #             (reses_ij['j_policy'] == 'max_weight') ][['ij','i','j', 'MR_ij_sim', 'pi_ent', 'j_policy', 'rho']]
-    # print data
-    #print list(reses_ij.columns.values)
+    # print( data)
+    #print( list(reses_ij.columns.values))
 
     # First X-axis
 
@@ -148,7 +148,7 @@ def service_time_dependency_experiment():
         for j_policy, color in [('fifo', 'blue'), ('max_weight', 'red'), ('rand', 'green')]:
             data = reses_ij[(reses_ij['rho'] >= rho-0.001) & (reses_ij['rho'] <= rho + 0.001) & (reses_ij['phi'] <= .1) &
                             (reses_ij['j_policy'] == j_policy)][['ij','i','j', 'MR_ij_sim', 'pi_ent', 'j_policy']]
-            print data
+            print( data)
             data = data.sort_values(by=['i','j'])
             #data.loc[:, 'ij'] = data['i'].apply(str) + ',' + data['j'].apply(str)
             ax1.plot(data['ij'], data['MR_ij_sim']*rho, label=j_policy + ' ' + str(rho), linestyle=linestyle, color=color)
@@ -167,11 +167,11 @@ def optimal_transport():
     fig1 = plt.figure()
     ax1 = SubplotHost(fig1, 111)
     fig1.add_subplot(ax1)
-    print reses_ij['phi']
+    print( reses_ij['phi'])
     # data = reses_ij[(reses_ij['rho'] > 0.99) &
     #             (reses_ij['j_policy'] == 'max_weight') ][['ij','i','j', 'MR_ij_sim', 'pi_ent', 'j_policy', 'rho']]
-    # print data
-    #print list(reses_ij.columns.values)
+    # print( data)
+    #print( list(reses_ij.columns.values))
 
     # First X-axis
 
@@ -179,7 +179,7 @@ def optimal_transport():
         for j_policy, color in [('fifo', 'blue'), ('max_weight', 'red'), ('rand', 'green')]:
             data = reses_ij[(reses_ij['rho'] >= rho-0.001) & (reses_ij['rho'] <= rho + 0.001) & (reses_ij['phi'] <= .1) &
                             (reses_ij['j_policy'] == j_policy)][['ij','i','j', 'MR_ij_sim', 'pi_ent', 'j_policy']]
-            print data
+            print( data)
             data = data.sort_values(by=['i','j'])
             ax1.plot(data['ij'], data['MR_ij_sim']*rho, label=j_policy + ' ' + str(rho), linestyle=linestyle, color=color)
             if j_policy == 'fifo':
@@ -218,10 +218,10 @@ def fifo_flaw():
     data_ij.loc[:,'pi_hat_n/pi_ent_n'] = data_ij['pi_hat_n']/data_ij['pi_ent_n']
     for col in ['pi_ent_0', 'pi_ent_n', 'pi_hat_n', 'pi_hat_0']:
         data_ij[col] = data_ij[col]*data_ij['N']*0.85*2
-    print data_ij[(data_ij['i'] % data_ij['N'] == 0) & (data_ij['N'] == 10)]\
+    print( data_ij[(data_ij['i'] % data_ij['N'] == 0) & (data_ij['N'] == 10)]\
         [['i','j_0','j_n','j_policy','sim_name','N',
           'pi_ent_0', 'pi_hat_0','pi_ent_n', 'pi_hat_n','pi_hat_n/pi_ent_n','MR_ij_sim_0', 'MR_ij_sim_n',
-          'WT_i_sim']].sort_values(by=['j_policy','N','i','sim_name',])
+          'WT_i_sim']].sort_values(by=['j_policy','N','i','sim_name',]))
 
 
 def fifo_flaw_2():
@@ -235,8 +235,8 @@ def fifo_flaw_2():
     reses_ij = get_file_data(exp, 'reses_ij')
     reses_i.loc[:, 'cust_type'] = 1*(reses_i['i'] >= reses_i['N'])
 
-    #print reses_ij[['sim_name', 'j_policy', 'rho1', 'rho2']].drop_duplicates()
-    #print reses_ij[['i', 'N','sim_name', 'j_policy', 'MR_ij_sim', 'rho1', 'rho2']].groupby(['i', 'N', 'sim_name','rho1', 'rho2','j_policy'], as_index=False).sum()
+    #print( reses_ij[['sim_name', 'j_policy', 'rho1', 'rho2']].drop_duplicates())
+    #print( reses_ij[['i', 'N','sim_name', 'j_policy', 'MR_ij_sim', 'rho1', 'rho2']].groupby(['i', 'N', 'sim_name','rho1', 'rho2','j_policy'], as_index=False).sum())
     reses_i = pd.merge(left=reses_i,
                        right=reses_ij[['i', 'N','sim_name', 'j_policy', 'MR_ij_sim', 'rho1', 'rho2']]
                        .groupby(['i', 'N', 'sim_name','j_policy','rho1', 'rho2'], as_index=False).sum()
@@ -295,17 +295,19 @@ def fifo_flaw_2():
         for j_p in ['max_weight', 'fifo']:
             for rho1 in [0.7, 0.8, 0.9, 0.95]:
                 for rho2 in [0.7, 0.8, 0.9, 0.95]:
-                # print type_reses_i[(type_reses_i['N'] == N) &
+                # print( type_reses_i[(type_reses_i['N'] == N) &)
                 #                    (type_reses_i['rho1'] == rho1) & (type_reses_i['rho2'] == rho2)
                 # ].sort_values(by=['N', 'WT_sim'])
-                    print type_reses_i[(type_reses_i['j_policy'] == j_p) & (type_reses_i['N'] == N) &
+                    print(
+                        type_reses_i[(type_reses_i['j_policy'] == j_p) & (type_reses_i['N'] == N) &
                                        ((type_reses_i['sim_name'] == 'balanced') |
                                         (type_reses_i['sim_name'] == 'non_squared') |
                                         (type_reses_i['sim_name'] == 'prio_1')| (type_reses_i['sim_name'] == 'prio_0') |
                                         (type_reses_i['sim_name'] == 'plain')) &
                                        (type_reses_i['rho1'] == rho1) & (type_reses_i['rho2'] == rho2)
                     ].sort_values(by=['N','j_policy', 'WT_sim'])
-                    print '--------------------------------------------------------------------------------------------------------------------------------'
+                    )
+                    print( '--------------------------------------------------------------------------------------------------------------------------------')
         # reses_ij = get_file_data(exp, 'reses_ij')
     # # data = reses_ij[(reses_ij['i'] % reses_ij['N'] == 0) & (reses_ij['j'] % reses_ij['N'] == 0)][['N', 'i','j','sim_name', 'WT_ij_sim', 'pi_hat', 'pi_ent', 'MR_ij_sim']]
     # data = reses_i[(reses_i['i'] == 0) | (reses_i['i'] == reses_i['N'])][['N', 'i','j_policy','sim_name', 'WT_i_sim']]
@@ -331,7 +333,7 @@ def fifo_flaw_2():
     # data_ij.loc[:,'pi_hat_n/pi_ent_n'] = data_ij['pi_hat_n']/data_ij['pi_ent_n']
     # for col in ['pi_ent_0', 'pi_ent_n', 'pi_hat_n', 'pi_hat_0']:
     #     data_ij[col] = data_ij[col]*data_ij['N']*0.85*2
-    # print data_ij[(data_ij['i'] % data_ij['N'] == 0) & (data_ij['N'] == 10)]\
+    # print( data_ij[(data_ij['i'] % data_ij['N'] == 0) & (data_ij['N'] == 10)]\)
     #     [['i','j_0','j_n','j_policy','sim_name','N',
     #       'pi_ent_0', 'pi_hat_0','pi_ent_n', 'pi_hat_n','pi_hat_n/pi_ent_n','MR_ij_sim_0', 'MR_ij_sim_n',
     #       'WT_i_sim']].sort_values(by=['j_policy','N','i','sim_name',])
@@ -421,14 +423,14 @@ def view_matching_rates(exp_dir):
     reses_i = get_file_data(exp_dir, 'reses_i')
     reses_ij = get_file_data(exp_dir, 'reses_ij')
     reses_ij[['MR_ij_sim']] = 90.*reses_ij['MR_ij_sim']
-    print reses_ij[['i','j','MR_ij_sim']]
+    print( reses_ij[['i','j','MR_ij_sim']])
 
 
 def view_2_chain():
 
     reses_ij = get_file_data('2_chain_2', 'reses_ij')
     reses_i = get_file_data('2_chain_2', 'reses_i')
-    # print reses_ij[reses_ij['i'] == reses_ij['j']][
+    # print( reses_ij[reses_ij['i'] == reses_ij['j']][)
     #                      ['i', 'j', 'noise', 'sim_name', 'MR_ij_sim', 'pi_ent','j_policy', 'sys_size','chain','rho']].rename(columns={'j': 'i^'})
     reses = pd.merge(left=reses_i[['i','noise', 'sim_name', 'lamda', 'j_policy', 'sys_size', 'chain','rho']],
                      right=reses_ij[reses_ij['i'] == reses_ij['j']][
@@ -443,7 +445,7 @@ def view_2_chain():
 
     reses.loc[:, 'abs_error'] = reses['rho']*(np.abs(reses['MR_ij_sim_x'] - reses['pi_ent_x']) + np.abs(reses['MR_ij_sim_y'] - reses['pi_ent_y']))
 
-    print reses.sort_values(by=['noise', 'rho', 'sim_name', 'sys_size','chain', 'i'])
+    print( reses.sort_values(by=['noise', 'rho', 'sim_name', 'sys_size','chain', 'i']))
 
     reses = reses[['noise', 'sim_name', 'j_policy', 'lamda','chain','sys_size','rho', 'abs_error']].groupby(['noise', 'sim_name', 'j_policy','chain','sys_size','rho'],
                                                                           as_index=False).sum()
@@ -453,7 +455,7 @@ def view_2_chain():
 
     reses = reses[['noise', 'j_policy', 'rel_error','chain','sys_size','rho']].groupby(['noise', 'j_policy','chain','sys_size','rho'], as_index=False).mean()
 
-    print reses[reses['j_policy'] == 'fifo'].sort_values(by=['sys_size','noise', 'rho', 'chain'])
+    print( reses[reses['j_policy'] == 'fifo'].sort_values(by=['sys_size','noise', 'rho', 'chain']))
 
 
 def view_increasing_systems():
@@ -502,11 +504,11 @@ def view_increasing_systems():
 
 
     reses_j.loc[:,'norm_j'] = (reses_j['j'] + 1.)/reses_j['N']
-    #print reses_i
+    #print( reses_i)
 
     prop_cycle = plt.rcParams['axes.prop_cycle']
     colors = prop_cycle.by_key()['color']
-    #print colors
+    #print( colors)
     fig, ax = plt.subplots(1,2)
     i = -1
     j = -1
@@ -576,17 +578,17 @@ def view_increasing_systems():
                 max_wt = np.amax(cum_wt_i_sim)
                 area_1 = calc_area_between_curves(cum_mr_i_sim, cum_mr_i_sim*max_wt, cum_mr_i_sim, cum_mr_i_sim*0)
                 area_2 = calc_area_between_curves(cum_mr_i_sim, cum_wt_i_sim, cum_mr_i_sim, cum_mr_i_sim*0)
-                print key
-                #print grp[['i', 'cum_WT_i_sim', 'WT_i_sim']]
-                print max_wt
-                #print "{:.0%}".format((area_1 - area_2)/area_1)
+                print( key)
+                #print( grp[['i', 'cum_WT_i_sim', 'WT_i_sim']])
+                print( max_wt)
+                #print( "{:.0%}".format((area_1 - area_2)/area_1))
 
                 sort_wt_i_sim = np.sort(wt_i_sim)
                 nn = sort_wt_i_sim.shape[0]
                 gini_score = (2*((np.arange(1, nn + 1, 1)*sort_wt_i_sim).sum()))/(nn * sort_wt_i_sim.sum()) - ((nn+1)/nn)
-                #print "{:.0%}".format(gini_score)
+                #print( "{:.0%}".format(gini_score))
 
-                #print cum_mr_i_sim
+                #print( cum_mr_i_sim)
                 if 'MW' in key[1]:
                     k = 0
                     i += 1
@@ -746,7 +748,7 @@ def gini_graphs(view_exp, filters, base_cols, n_name='N', show=True):
                        right=reses_ij[base_cols + ['i', 'MR_ij_sim']].groupby(by=base_cols+['i'], as_index=False).sum()
                        .rename(columns={'MR_ij_sim': 'MR_i_sim'}), on=base_cols + ['i'], how='left')
 
-    #print reses_i[base_cols + ['i', 'MR_i_sim']]
+    #print( reses_i[base_cols + ['i', 'MR_i_sim']])
 
     reses_i = pd.merge(left=reses_i,
                        right=reses_ij[base_cols + ['MR_ij_sim']]
@@ -808,8 +810,8 @@ def gini_graphs(view_exp, filters, base_cols, n_name='N', show=True):
 
                 cum_wt_i_sim = np.append(np.array([0]), grp['cum_WT_i_sim'])
                 cum_mr_i_sim = np.append(np.array([0]), grp['cum_MR_i_sim'])
-                #print grp[['i', 'WT_i_sim', 'cum_MR_i_sim']]
-                #print cum_mr_i_sim
+                #print( grp[['i', 'WT_i_sim', 'cum_MR_i_sim']])
+                #print( cum_mr_i_sim)
                 wt_i_sim = np.append(np.array([0]), grp['WT_i_sim'])
                 max_cum_wt = np.amax(cum_wt_i_sim)
                 max_wt = np.amax(wt_i_sim)
@@ -819,14 +821,14 @@ def gini_graphs(view_exp, filters, base_cols, n_name='N', show=True):
                 area_4 = calc_area_between_curves(cum_mr_i_sim, cum_wt_i_sim/max_cum_wt, cum_mr_i_sim, cum_mr_i_sim*0)
                 gini1 = (area_1 - area_2)/area_1
                 gini2 = (area_3 - area_4)/area_3
-                print key
+                print( key)
                 res_dic[key_dict['sim_name']] = {'avg. WT': max_cum_wt, 'gini1': gini1,'gini2': gini2, 'worst':max_wt }
-                print max_cum_wt
-                print "{:.0%}".format((area_1 - area_2)/area_1)
+                print( max_cum_wt)
+                print( "{:.0%}".format((area_1 - area_2)/area_1))
                 # sort_wt_i_sim = np.sort(wt_i_sim)
                 # nn = sort_wt_i_sim.shape[0]
                 # gini_score = (2*((np.arange(1, nn + 1, 1)*sort_wt_i_sim).sum()))/(nn * sort_wt_i_sim.sum()) - ((nn+1)/nn)
-                # print "{:.0%}".format(gini_score)
+                # print( "{:.0%}".format(gini_score))
 
                 if fill_between:
                     ax[k].fill_between(cum_mr_i_sim, cum_mr_i_sim*max_cum_wt, cum_wt_i_sim, color=color, alpha=0.2)
@@ -844,7 +846,7 @@ def gini_graphs(view_exp, filters, base_cols, n_name='N', show=True):
 
                 # ax[k].plot(cum_mr_i_sim, wt_i_sim, color='black', linewidth=.5,
                 #            linestyle='-', marker=MARKERS2[h],markersize=4,label='n=' + str(key[1]))
-                #print 1.-cum_mr_i_sim
+                #print( 1.-cum_mr_i_sim)
                 else:
                     lines[k] += ax[k].plot(1.-cum_mr_i_sim, wt_i_sim, color='black', linewidth=.5,
                            linestyle='-', marker=MARKERS[h%len(MARKERS)], markersize=4,
@@ -876,21 +878,21 @@ def gini_graphs(view_exp, filters, base_cols, n_name='N', show=True):
                     # ax[1].set_title(r"FIFO-ALIS," r"$\quad\rho=.95$", fontsize=16, color='black')
     for key, val in sorted(res_dic.iteritems()):
         if 'FIFO' in key or 'prio' in key:
-            print key, [(key2, ':', val2) for key2, val2 in val.iteritems()]
-    print '-------------------------------------------------'
-    print '-------------------------------------------------'
+            print( key, [(key2, ':', val2) for key2, val2 in val.iteritems()])
+    print( '-------------------------------------------------')
+    print( '-------------------------------------------------')
     for key, val in sorted(res_dic.iteritems()):
         if 'MW' in key or 'prio' in key:
-            print key, [(key2, ':', val2) for key2, val2 in val.iteritems()]
+            print( key, [(key2, ':', val2) for key2, val2 in val.iteritems()])
     if show:
         plt.show()
 
 
-    # print reses_ij[((reses_ij['sim_name'] == 'rho_weighted_FIFO')| (reses_ij['sim_name'] == 'plain_FIFO') )&
+    # print( reses_ij[((reses_ij['sim_name'] == 'rho_weighted_FIFO')| (reses_ij['sim_name'] == 'plain_FIFO') )&)
     #                (reses_ij['N'] == 30) & (reses_ij['j'] == 0)][['sim_name', 'i','j','pi_ent','pi_hat','rho_ent','rho_hat','Q_ij_ent','Q_ij_hat', 'MR_ij_sim', 'MR_ij_count', 'WT_ij_sim', 'w_ij']]
-    # print reses_ij[reses_ij['i'] == reses_ij['j']][
+    # print( reses_ij[reses_ij['i'] == reses_ij['j']][)
     #                      ['i', 'j', 'noise', 'sim_name', 'MR_ij_sim', 'pi_ent','j_policy', 'sys_size','chain','rho']].rename(columns={'j': 'i^'})
-    # print reses_i
+    # print( reses_i)
     # res = dict()
     # cols = ['i', 'sim_name','rho', 'N','WT_i_sim', 'WT_i_std_sim', 'WT_i_scv_sim']
     # for sim_name in ['rho_weighted_FIFO', 'plain_FIFO', 'plain_prio', 'rho_weighted_MW', 'plain_MW']:
@@ -909,11 +911,11 @@ def gini_graphs(view_exp, filters, base_cols, n_name='N', show=True):
     #
     # res = res.sort_values(by=['sim_name', 'rho', 'N','WT_i_sim'])
     # #res.loc[:, 'cum_WT_i'] = res.groupby(['sim_name', 'rho', 'N','WT_i_sim'])['WT_i_sim'].apply(lambda x: x.cumsum())
-    # print res
+    # print( res)
 
-    # print reses_ij[((reses_ij['sim_name'] == 'rho_weighted_FIFO') |
+    # print( reses_ij[((reses_ij['sim_name'] == 'rho_weighted_FIFO') |)
     #                (reses_ij['sim_name'] == 'plain_FIFO')) & (reses_ij['N'] == 50) & (reses_ij['i'] == 49)][['i','j','N','MR_ij_sim','i_policy','j_policy','sim_name','pi_ent','pi_hat','pi_ent/pi_hat','WT_ij_sim','WT_ij_std_sim']]
-    # print reses_ij[((reses_ij['sim_name'] == 'rho_weighted_FIFO') |
+    # print( reses_ij[((reses_ij['sim_name'] == 'rho_weighted_FIFO') |)
     #                 (reses_ij['sim_name'] == 'plain_FIFO')) & (reses_ij['N'] == 50)][
     #     ['j','pi_ent','pi_hat']].groupby(['j']).sum()
 
@@ -924,7 +926,7 @@ def view_approximation(view_exp, base_cols, filters):
     reses_i = filter_df(get_file_data(view_exp, 'reses_i'), filters)
     reses_j = filter_df(get_file_data(view_exp, 'reses_j'), filters)
 
-    #print reses_ij
+    #print( reses_ij)
 
     reses_ij = pd.merge(left=reses_ij,
                         right=reses_i[base_cols + ['lamda']].groupby(base_cols, as_index=False).sum(),
@@ -948,17 +950,17 @@ def view_approximation(view_exp, base_cols, filters):
                         right=reses_j[base_cols + ['j','rho_j_sim', 'rho_ent', 'rho_hat', 'mu']],
                         on=base_cols + ['j'], how='left')
 
-    print reses_ij
+    print( reses_ij)
 
     fig, ax = plt.subplots(2, 2)
 
     v = 0
     for key, grp in reses_ij.groupby(base_cols):
         key_dict = dict(zip(base_cols, key))
-        print key_dict['sim_name']
+        print( key_dict['sim_name'])
         k = 0 if 'FIFO' in key_dict['sim_name'] else 1
         if 'plain' in key_dict['sim_name'] and 'prio' not in key_dict['sim_name']:
-            print 'k', k, key_dict
+            print( 'k', k, key_dict)
             ax[0, k].plot(grp['ij'], grp['pi_ent'], label='pi_ent')
             ax[0, k].plot(grp['ij'], grp['pi_hat'], label='pi_hat')
         if key_dict['sim_name'] == 'plain_prio':
@@ -969,7 +971,7 @@ def view_approximation(view_exp, base_cols, filters):
         key_dict = dict(zip(base_cols, key))
         k = 0 if 'FIFO' in key_dict['sim_name'] else 1
         if 'plain' in key_dict['sim_name'] and 'prio' not in key_dict['sim_name']:
-            print 'k', k, key_dict
+            print( 'k', k, key_dict)
             ax[1, k].plot(grp['j'], grp['rho_ent'], label='rho_ent')
             ax[1, k].plot(grp['j'], grp['rho_hat'], label='rho_hat')
         if key_dict['sim_name'] == 'plain_prio':
@@ -1035,7 +1037,7 @@ def get_pi_hat(view_exp, filters, base_cols):
     reses_ij = pd.merge(left=reses_ij, right=pi_hat_w_mu, on=['i','j'], how='left')
 
     res = reses_ij[['i','j','pi_ent', 'pi_hat','pi_hat_wo_mu', 'pi_hat_w_mu', 'lamda_ij_sim']]
-    print res
+    print( res)
     res_u = res[['j','pi_ent', 'pi_hat','pi_hat_wo_mu', 'pi_hat_w_mu', 'lamda_ij_sim']].groupby(['j']).sum()
     res_u = pd.merge(left=res_u, right=reses_j[['j', 'mu']], on='j',how='left')
     res_u.loc[:, 'u_ent'] = res_u['pi_ent']/res_u['mu']
@@ -1044,7 +1046,7 @@ def get_pi_hat(view_exp, filters, base_cols):
     res_u.loc[:, 'u_pi_hat_w_mu'] = res_u['pi_hat_w_mu']/res_u['mu']
     res_u.loc[:, 'u_sim'] = res_u['lamda_ij_sim']/res_u['mu']
     res_u.loc[:, 'gap'] = np.abs(res_u['u_sim'] - res_u['u_pi_hat_wo_mu'])
-    print res_u.sort_values(by='mu')
+    print( res_u.sort_values(by='mu'))
 
 
 if __name__ == '__main__':
@@ -1077,22 +1079,22 @@ if __name__ == '__main__':
 
     #gini_graphs(kcid, filters_dict_chains, base_cols_chains, n_name='n',show=False)
     #reses_i = filter_df(get_file_data(kcid, 'reses_i'), dict())
-    #print reses_i[['rho', 'chain_len', 'exp_num', 'sim_name']].drop_duplicates()
+    #print( reses_i[['rho', 'chain_len', 'exp_num', 'sim_name']].drop_duplicates())
     #
     reses_i = filter_df(get_file_data(softer, 'reses_i'), dict())
     reses_j = filter_df(get_file_data(softer, 'reses_j'), dict())
     reses_ij = filter_df(get_file_data(softer, 'reses_ij'), dict())
     reses_ij.loc[:, 'lamda_ij_sim'] = reses_ij['MR_ij_sim'] * (reses_ij['sim_name'].astype(int) * 0.99 + 0.95)
-    print reses_i[((reses_i['i'] == 0) | (reses_i['i'] == 1)) & (reses_i['j_policy'] == 'fifo')]
-    print reses_j[((reses_j['j'] == 0) | (reses_j['j'] == 3)) & (reses_j['j_policy'] == 'fifo')]
-    print reses_ij[((reses_ij['ij'] == '0,0') | (reses_ij['ij'] == '0,0')) & (reses_ij['j_policy'] == 'fifo')]
+    print( reses_i[((reses_i['i'] == 0) | (reses_i['i'] == 1)) & (reses_i['j_policy'] == 'fifo')])
+    print( reses_j[((reses_j['j'] == 0) | (reses_j['j'] == 3)) & (reses_j['j_policy'] == 'fifo')])
+    print( reses_ij[((reses_ij['ij'] == '0,0') | (reses_ij['ij'] == '0,0')) & (reses_ij['j_policy'] == 'fifo')])
 
-    # print reses_ij[(reses_ij['N'] == 10) &
+    # print( reses_ij[(reses_ij['N'] == 10) &)
     #                (reses_ij['sim_name'] == 'plain_FIFO') &
     #                np.isclose(reses_ij['rho'], 0.65)][['i', 'j', 'N','sim_name','rho','MR_ij_sim', 'pi_ent']]
 
 
-    # print reses_ij[['i','j','sim_name',
+    # print( reses_ij[['i','j','sim_name',)
     #                 'MR_ij_sim', 'MR_ij_sim_std', 'MR_ij_sim_scv',
     #                 'WT_ij_sim', 'WT_ij_sim_std', 'WT_ij_sim_scv']].pivot_table(
     #     index=['i','j'],
@@ -1104,7 +1106,7 @@ if __name__ == '__main__':
     #                                                                columns=['sim_name'],
     #                                                                values=['WT_i_sim'])
 
-    # print reses_i
+    # print( reses_i)
 
 
     # reses_wt = reses_i['WT_i_sim'][['5,000,000', '1,000,000']]
@@ -1113,4 +1115,4 @@ if __name__ == '__main__':
     # reses_wt_std = reses_i['WT_i_sim_std'][['5,000,000']].rename(columns={'5,000,000':'std'})
     # reses_wt = pd.concat([reses_wt, reses_wt_std], axis=1)
     # reses_wt.loc[:, 'std_gap'] = np.abs(reses_wt['gap']/reses_wt['std'])
-    # print reses_wt
+    # print( reses_wt)

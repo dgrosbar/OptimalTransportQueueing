@@ -17,16 +17,16 @@ from solvers import bipartite_workload_decomposition
 import pandas as pd
 
 
-def create_input_files(lamda, mu, q, **kwargs):
+# def create_input_files(lamda, mu, q, **kwargs):
 
-    input_i = pd.DataFrame({'i': np.arange(len(lamda)), 'lamda': lamda})
-    input_j = pd.DataFrame({'j': np.arange(len(lamda)), 'mu': mu})
-    if sps.isspmatrix(q):
-        input_ij =
+#     input_i = pd.DataFrame({'i': np.arange(len(lamda)), 'lamda': lamda})
+#     input_j = pd.DataFrame({'j': np.arange(len(lamda)), 'mu': mu})
+#     if sps.isspmatrix(q):
+#         input_ij = 
 
 
 def filter_df(df, filter_dict):
-    print filter_dict
+    print(filter_dict)
     for key, value in filter_dict.iteritems():
         if not value[1]:
             df = df[df[key] == value[0]]
@@ -54,7 +54,7 @@ def is_non_trivial_and_connected(q):
         col_deg = q.sum(axis=0)
 
     min_deg = min(np.amin(row_deg), np.amin(col_deg))
-    print min_deg
+    print(min_deg)
 
     if sps.isspmatrix(q):
         q = sps.vstack((sps.hstack((m_zero, q)), sps.hstack((q.T, n_zero))))
@@ -111,12 +111,12 @@ def fast_choice(arr, size, shuffle=False):
 def transform_to_normal_form(M, W, Q, Z, row_sum, col_sum):
 
     if sps.isspmatrix(Q):
-        print 'in sparse'
-        # print Z.shape
-        # print M.shape
-        # print type(M)
-        # print W.shape
-        # print sps.csr_matrix((np.exp(-1*M.data/W.data), M.indices, M.indptr)).shape
+        print('in sparse')
+        # print(Z.shape)
+        # print(M.shape)
+        # print(type(M))
+        # print(W.shape)
+        # print(sps.csr_matrix((np.exp(-1*M.data/W.data), M.indices, M.indptr)).shape)
         Z_hat = Z.multiply(W).multiply(sps.csr_matrix((np.exp(-1*M.data/W.data), M.indices, M.indptr)))
         Q_hat = sps.csr_matrix((Q.data/W.data, Q.indices, Q.indptr))
         z = Z_hat.todense().A.ravel()
@@ -147,7 +147,7 @@ def metrize_constranits(Q, row_sum, col_sum, eq_double_vars=False, prt=False):
 
     for i, j in zip(*Q.nonzero()):
             if prt:
-                print (i, j),'-->', (i, i * n + j), (m + j, i * n + j)
+                print((i, j),'-->', (i, i * n + j), (m + j, i * n + j))
             rows.append(i)
             rows.append(m + j)
             cols.append(i * n + j)
@@ -184,7 +184,7 @@ def add_drain_nodes(q, lamda, mu):
 def con_print(str, con):
 
     if con:
-        print str
+        print(str)
 
 
 def sakasegawa(c,u):
@@ -195,19 +195,19 @@ def sakasegawa(c,u):
 
 
 def fss_wt_approximation(q, mr, lamda, mu):
-        print 'fss_wt_approximation'
+        print('fss_wt_approximation')
         nc, ns = mr.shape
         m = np.exp((-1 * mr * np.log(mr + (np.ones(mr.shape) - np.sign(q)))).sum(axis=1))
         #m = q.sum(axis=1)
-        print m.sum()
+        print(m.sum())
         u = np.squeeze(mr.dot((np.squeeze(mr.sum(axis=0))/mu)))/lamda
         dnum = m*(np.ones(nc) - u)
         num = u ** ((2.0 * (m + np.ones(nc)))**0.5 - np.ones(nc))
         scale = np.ones(nc)/(mr.dot(mu)/lamda)
-        print scale * num/dnum
+        print(scale * num/dnum)
         #m = np.exp((-1 * mr * np.log(mr + (np.ones(mr.shape) - np.sign(q)))).sum(axis=1))
         m = q.sum(axis=1)
-        print m.sum()
+        print(m.sum())
         #u = np.squeeze(mr.dot((np.squeeze(mr.sum(axis=0))/mu)))/lamda
         dnum = m*(np.ones(nc) - u)
         num = u ** ((2.0 * (m + np.ones(nc)))**0.5 - np.ones(nc))
@@ -218,7 +218,7 @@ def fss_wt_approximation(q, mr, lamda, mu):
 def gridify(vec, mapping, m, n):
 
     result = np.zeros((m,n))
-    print vec[0].shape
+    print(vec[0].shape)
     for i in range(m*n):
         result[mapping[i][0]] = vec[i]
 
@@ -255,14 +255,14 @@ def matching_rate_calculator(alpha, beta, q, check_feasibility=True):
         if len(ss) > 0:
             return sum(alpha[i] for i in ss)
         else:
-            print 'alpha 0'
+            print('alpha 0')
             return 0
 
     def bk_f(ss):
         if len(ss) > 0:
             return sum(beta[i] for i in ss)
         else:
-            print 'beta 0'
+            print('beta 0')
             return 0
 
     a = dict()
@@ -293,10 +293,10 @@ def matching_rate_calculator(alpha, beta, q, check_feasibility=True):
 
     for p in permutations(rns):
         # if flag:
-        #     print p
+        #     print(p)
         #     for k in range(1, ns, 1):
-        #         print 'k',k
-        #         print p[:k]
+        #         print('k',k)
+        #         print(p[:k])
         #     flag = False
         pipp = prod(b[frozenset(p[:k])] - a[u[frozenset(p[:k])]] for k in range(1, ns, 1))**-1
         B += pipp
@@ -501,4 +501,4 @@ def gaussian_pdf_2d_shitty(m, n, centers, normalize=False):
 
 
 if __name__ == '__main__':
-    print ''
+    print('')
