@@ -1,4 +1,5 @@
-from simulators2 import online_matching_simulator, MultiSim, SimExperiment
+#from simulation3 import MultiSim, SimExperiment
+from simulators2 import MultiSim, SimExperiment
 from generators import *
 from solvers import *
 import numpy as np
@@ -38,49 +39,49 @@ def k_chains(nc, ns, k, u, sparse=True, noise=0):
     plt.plot([str(edge) for edge in edges], [p[row, col] for row, col in edges], label='max entropy')
     plt.legend()
     #
-    # print q[:nc, :]
-    # print 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    # print 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    # print 'matching_rates'
-    # print matching_rates
-    # print '--------------------------------------'
-    # print p[:nc, :].todense()
-    # print 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    # print 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    # print 'lamda'
-    # print lamda
-    # print 'sum axis = 1'
-    # print np.squeeze(matching_rates.sum(axis=1))
-    # print '--------------------------------------'
-    # print p[:nc, :].todense().sum(axis=1).T
-    # print 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    # print 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    # print 'mu'
-    # print mu
-    # print 'sum axis = 0'
-    # print np.squeeze(matching_rates.sum(axis=0))
-    # print '--------------------------------------'
-    # print p.todense().sum(axis=0)
-    # print 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    # print 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    # print 'total sum'
-    # print matching_rates.sum()
-    # print '--------------------------------------'
-    # print p.todense().sum()
-    # #print np.abs(matching_rates - p[:nc,:]).sum()
-    # print 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    # print 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    # print 'wating times'
-    # print [str(x)[:5] for x in waiting_times]
-    # print '-----------------------------------------'
+    # print( q[:nc, :])
+    # print( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+    # print( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+    # print( 'matching_rates')
+    # print( matching_rates)
+    # print( '--------------------------------------')
+    # print( p[:nc, :].todense())
+    # print( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+    # print( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+    # print( 'lamda')
+    # print( lamda)
+    # print( 'sum axis = 1')
+    # print( np.squeeze(matching_rates.sum(axis=1)))
+    # print( '--------------------------------------')
+    # print( p[:nc, :].todense().sum(axis=1).T)
+    # print( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+    # print( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+    # print( 'mu')
+    # print( mu)
+    # print( 'sum axis = 0')
+    # print( np.squeeze(matching_rates.sum(axis=0)))
+    # print( '--------------------------------------')
+    # print( p.todense().sum(axis=0))
+    # print( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+    # print( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+    # print( 'total sum')
+    # print( matching_rates.sum())
+    # print( '--------------------------------------')
+    # print( p.todense().sum())
+    # #print( np.abs(matching_rates - p[:nc,:]).sum())
+    # print( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+    # print( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+    # print( 'wating times')
+    # print( [str(x)[:5] for x in waiting_times])
+    # print( '-----------------------------------------')
     plt.show()
     # a_wt = fss_wt_approximation(q[:nc, :], p.todense().A[:nc, :], lamda, mu)
-    # print [str(x)[:5] for x in a_wt]
-    # print '-------------------------------'
-    # print [x[0] for x in sorted(enumerate(waiting_times), key=lambda x: x[1])]
-    # print [x[0] for x in sorted(enumerate(a_wt), key=lambda x: x[1])]
-    # print 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    # print 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    # print( [str(x)[:5] for x in a_wt])
+    # print( '-------------------------------')
+    # print( [x[0] for x in sorted(enumerate(waiting_times), key=lambda x: x[1])])
+    # print( [x[0] for x in sorted(enumerate(a_wt), key=lambda x: x[1])])
+    # print( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+    # print( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
 
 
 def matching_market():
@@ -201,7 +202,7 @@ def fifo_flaw():
         mu = np.ones(n+1)
         Q = np.diag(np.ones(n+1), 0)
         Q[1:n+1, 0] = np.ones(n)
-        print Q
+        print( Q)
         rho1_dic = {'res': ['i', 'j', 'ij'], 'val': rho1, 'matrix': False}
         rho2_dic = {'res': ['i', 'j', 'ij'], 'val': rho2, 'matrix': False}
         N_dic = {'res': ['i', 'j', 'ij'], 'val': n, 'matrix': False}
@@ -309,18 +310,18 @@ def fifo_flaw2():
                             pi_hat_dic = pi_ent_dic
                             w = Qp
 
-                        print '----------------------------------------------------------------------------------'
-                        print n, rho1, rho2, sim_name, 'fifo'
-                        print '----------------------------------------------------------------------------------'
+                        print( '----------------------------------------------------------------------------------')
+                        print( n, rho1, rho2, sim_name, 'fifo')
+                        print( '----------------------------------------------------------------------------------')
 
                         fifo_flow_exp.simulate(lamda=lamda, mu=mu, w=w, q=Q,
                                                rho1=rho1_dic, rho2=rho2_dic,
                                                N=N_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic,
                                                sim_len=n*sim_len, sims=1, sim_name=sim_name)
 
-                        print '----------------------------------------------------------------------------------'
-                        print n, rho1, rho2, sim_name, 'max_weight'
-                        print '----------------------------------------------------------------------------------'
+                        print( '----------------------------------------------------------------------------------')
+                        print( n, rho1, rho2, sim_name, 'max_weight')
+                        print( '----------------------------------------------------------------------------------')
 
                         fifo_flow_exp.simulate(lamda=lamda, mu=mu, w=w, q=Q,
                                                rho1=rho1_dic, rho2=rho2_dic,
@@ -330,17 +331,17 @@ def fifo_flaw2():
                 Q = np.vstack((np.hstack((np.diag(np.ones(n), 0), np.zeros((n, n)))),
                               np.hstack((np.zeros((n,n)), np.ones((n, n))))))
 
-                print '----------------------------------------------------------------------------------'
-                print n, rho1, rho2, 'balanced', 'fifo'
-                print '----------------------------------------------------------------------------------'
+                print( '----------------------------------------------------------------------------------')
+                print( n, rho1, rho2, 'balanced', 'fifo')
+                print( '----------------------------------------------------------------------------------')
 
                 fifo_flow_exp.simulate(lamda=lamda, mu=mu, q=Q,
                                        rho1=rho1_dic, rho2=rho2_dic, N=N_dic,
                                        sim_len=n*sim_len, sims=1, sim_name='balanced')
 
-                print '----------------------------------------------------------------------------------'
-                print n, rho1, rho2, 'balanced', 'max_weight'
-                print '----------------------------------------------------------------------------------'
+                print( '----------------------------------------------------------------------------------')
+                print( n, rho1, rho2, 'balanced', 'max_weight')
+                print( '----------------------------------------------------------------------------------')
 
                 fifo_flow_exp.simulate(lamda=lamda, mu=mu, q=Q,
                                        rho1=rho1_dic, rho2=rho2_dic, N=N_dic,
@@ -408,20 +409,20 @@ def power_of_an_arc():
                 q_hat_dic = {'res': ['ij'], 'val': q_hat, 'matrix': True}
 
                 if n <= 5:
-                    print Q
+                    print( Q)
 
-                print '----------------------------------------------------------------------------------'
-                print n, rho1, rho2,  'fifo'
-                print '----------------------------------------------------------------------------------'
+                print( '----------------------------------------------------------------------------------')
+                print( n, rho1, rho2,  'fifo')
+                print( '----------------------------------------------------------------------------------')
 
                 fifo_flow_exp.simulate(lamda=lamda, mu=mu, q=Q,
                                        rho1=rho1_dic, rho2=rho2_dic, rho=rho_dic,
                                        pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, q_ent=q_ent_dic, q_hat=q_hat_dic, w=w_dic,
                                        N=N_dic,sim_len=n*sim_len, sims=30, sim_name=str(n))
 
-                print '----------------------------------------------------------------------------------'
-                print n, rho1, rho2, 'max_weight'
-                print '----------------------------------------------------------------------------------'
+                print( '----------------------------------------------------------------------------------')
+                print( n, rho1, rho2, 'max_weight')
+                print( '----------------------------------------------------------------------------------')
 
                 fifo_flow_exp.simulate(lamda=lamda, mu=mu,q=Q,
                                        rho1=rho1_dic, rho2=rho2_dic, rho=rho_dic,
@@ -447,7 +448,7 @@ def flexible_queueing_system_with_utility(m, n):
         wls, rho_m, rho_n = bipartite_workload_decomposition(Q, lamda, mu)
 
         max_rho = np.amax(rho_n)
-        print 'max_rho', max_rho
+        print( 'max_rho', max_rho)
 
     simulator = SimExperiment('optimal_transport_queueing')
 
@@ -459,9 +460,9 @@ def flexible_queueing_system_with_utility(m, n):
         lamda_p = lamda_p/lamda_p.sum()
         Qp = sps.vstack((Q, np.ones(n)), format='csr') if sparse else np.vstack((Q, np.ones(n)))
         Mp = sps.vstack((M, np.ones(n)), format='csr') if sparse else np.vstack((M, np.ones(n)))
-        print len(Mp.data)
+        print( len(Mp.data))
         #Mp = sps.diags(np.array([1.]*(m) +[0.]), format='csr').dot(Mp) if sparse else Mp
-        print len(Mp.data)
+        print( len(Mp.data))
 
         wm = np.ones(n)*rho**2
 
@@ -500,8 +501,8 @@ def flexible_queueing_system_with_utility(m, n):
                 pi_opt, duals = fast_primal_dual_algorithm(A, b, z, act_rows=act_rows)
                 pi_opt = pi_opt.reshape((m+1, n))[:m, :]
                 w = np.divide(pi_opt, pi_ent, out=np.zeros_like(pi_opt), where=pi_ent != 0)
-                print name
-                print sps.csr_matrix(w)
+                print( name)
+                print( sps.csr_matrix(w))
                 pi_opt_dic = {'res': ['ij'], 'val': w[:m, :], 'matrix': True}
                 simulator.simulate(lamda=lamda*rho, mu=mu, q=Q, w=w, i_policy='rand', j_policy='rand', sims=1,
                                    sim_name=name, rho=rho_dic, pi_ent=pi_ent_dic, pi_opt=pi_opt_dic, phi=phi_dic, M=m_dic)
@@ -563,12 +564,12 @@ def flexible_queueing_system_with_utility(m, n):
     plt.legend()
     plt.show()
 
-    # print 'p0'
-    # print p0.reshape((m+1, n))
-    # print 'p1'
-    # print p1.reshape((m+1, n))
-    # print 'p2'
-    # print p2.reshape((m+1, n))
+    # print( 'p0')
+    # print( p0.reshape((m+1, n)))
+    # print( 'p1')
+    # print( p1.reshape((m+1, n)))
+    # print( 'p2')
+    # print( p2.reshape((m+1, n)))
 
 
     fifo_alis_u = queueing_simulator(lamda, mu, Qp, warm_up=None, sim_len=None, sims=1, policy='fifo_alis', w=p)
@@ -582,7 +583,7 @@ def flexible_queueing_system_with_utility(m, n):
     max_weight_u = queueing_simulator(lamda, mu, Qp, warm_up=None, sim_len=None, sims=1, policy='max_weight', w=p)
 
     # matching_rates = fifo_alis['matching_rates'].observations[0]
-    # print matching_rates
+    # print( matching_rates)
     # waiting_times = fifo_alis['waiting_times'].observations[0]
     # waiting_times = waiting_times/matching_rates.sum(axis=1)
     # matching_rates = matching_rates/matching_rates.sum()
@@ -630,10 +631,10 @@ def n_system():
             p12_sim.append(matching_rates[0, 1])
             # lam2.append(i)
             #
-            # print 'waiting times'
-            # print waiting_times
-            # print waiting_times[1]/(1.0 + waiting_times[1])
-            print '--------------------------------------------------------'
+            # print( 'waiting times')
+            # print( waiting_times)
+            # print( waiting_times[1]/(1.0 + waiting_times[1]))
+            print( '--------------------------------------------------------')
         # plt.plot(lam2, u_equiv, label='u_euiv')
         plt.plot(lam2_range, p12_ent, label='ent', linewidth=3.0)
         plt.plot(lam2_range, p12_sim, label='sim')
@@ -668,7 +669,7 @@ def increasing_system():
             q_ent = (q_ent.T/q_ent.sum(axis=1)).T
 
 
-            #print pi_ent
+            #print( pi_ent)
 
             pi_ent_dic = {'res': ['ij'], 'val': pi_ent, 'matrix': True}
             rho_dic = {'res':['i', 'j', 'ij'], 'val': rho, 'matrix': False}
@@ -690,38 +691,38 @@ def increasing_system():
             w = np.divide(q_hat, q_ent, out=np.zeros_like(q_hat), where=q_ent != 0)
             w_prio = np.flipud(np.fliplr(np.triu(np.arange(k**2).reshape((k,k)),0)))
 
-            print '----------------------------------------------------------------------------------'
-            print k, rho, 'fifo', 'rho_weighted'
-            print '----------------------------------------------------------------------------------'
+            print( '----------------------------------------------------------------------------------')
+            print( k, rho, 'fifo', 'rho_weighted')
+            print( '----------------------------------------------------------------------------------')
 
             simulator.simulate(lamda=lamda*rho, mu=mu, w=w, q=Q, rho=rho_dic, N=N_dic, pi_ent=pi_ent_dic,pi_hat=pi_hat_dic,
                                sim_len=k*sim_len, sims=1, sim_name='rho_weighted_FIFO')
 
-            print '----------------------------------------------------------------------------------'
-            print k,rho, 'max_weight', 'rho_weighted'
-            print '----------------------------------------------------------------------------------'
+            print( '----------------------------------------------------------------------------------')
+            print( k,rho, 'max_weight', 'rho_weighted')
+            print( '----------------------------------------------------------------------------------')
 
             simulator.simulate(lamda=lamda*rho, mu=mu, w=w, q=Q, rho=rho_dic, N=N_dic, pi_ent=pi_ent_dic,pi_hat=pi_hat_dic,
                                sim_len=k*sim_len, sims=1, sim_name='rho_weighted_MW',
                                j_policy='max_weight')
 
-            print '----------------------------------------------------------------------------------'
-            print k, rho, 'fifo', 'plain'
-            print '----------------------------------------------------------------------------------'
+            print( '----------------------------------------------------------------------------------')
+            print( k, rho, 'fifo', 'plain')
+            print( '----------------------------------------------------------------------------------')
 
             simulator.simulate(lamda=lamda*rho, mu=mu,  q=Q, rho=rho_dic, N=N_dic, pi_ent=pi_ent_dic,
                                pi_hat=pi_hat_dic, sim_len=k*sim_len, sims=1, sim_name='plain_FIFO')
 
-            print '----------------------------------------------------------------------------------'
-            print k,rho, 'max_weight', 'plain'
-            print '----------------------------------------------------------------------------------'
+            print( '----------------------------------------------------------------------------------')
+            print( k,rho, 'max_weight', 'plain')
+            print( '----------------------------------------------------------------------------------')
 
             simulator.simulate(lamda=lamda*rho, mu=mu, q=Q, rho=rho_dic, N=N_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic,
                                sim_len=k*sim_len, sims=1, sim_name='plain_MW', j_policy='max_weight')
 
-            print '----------------------------------------------------------------------------------'
-            print k,rho, 'prio', 'plain'
-            print '----------------------------------------------------------------------------------'
+            print( '----------------------------------------------------------------------------------')
+            print( k,rho, 'prio', 'plain')
+            print( '----------------------------------------------------------------------------------')
 
             simulator.simulate(lamda=lamda*rho, w=w_prio, mu=mu, q=Q, rho=rho_dic, N=N_dic,
                                pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, sim_len=k*sim_len, sims=1, sim_name='plain_prio',
@@ -753,7 +754,7 @@ def increasing_system_weight_calibration():
             q_ent = (q_ent.T/q_ent.sum(axis=1)).T
 
 
-            #print pi_ent
+            #print( pi_ent)
 
             pi_ent_dic = {'res': ['ij'], 'val': pi_ent, 'matrix': True}
             rho_dic = {'res':['i', 'j', 'ij'], 'val': rho, 'matrix': False}
@@ -776,38 +777,38 @@ def increasing_system_weight_calibration():
             w = np.divide(q_hat, q_ent, out=np.zeros_like(q_hat), where=q_ent != 0)
             w_prio = np.flipud(np.fliplr(np.triu(np.arange(k**2).reshape((k,k)),0)))
 
-            print '----------------------------------------------------------------------------------'
-            print k, rho, 'fifo', 'rho_weighted'
-            print '----------------------------------------------------------------------------------'
+            print( '----------------------------------------------------------------------------------')
+            print( k, rho, 'fifo', 'rho_weighted')
+            print( '----------------------------------------------------------------------------------')
 
             simulator.simulate(lamda=lamda*rho, mu=mu, w=w, q=Q, rho=rho_dic, N=N_dic, pi_ent=pi_ent_dic,pi_hat=pi_hat_dic,
                                sim_len=k*sim_len, sims=1, sim_name='rho_weighted_FIFO')
 
-            print '----------------------------------------------------------------------------------'
-            print k,rho, 'max_weight', 'rho_weighted'
-            print '----------------------------------------------------------------------------------'
+            print( '----------------------------------------------------------------------------------')
+            print( k,rho, 'max_weight', 'rho_weighted')
+            print( '----------------------------------------------------------------------------------')
 
             simulator.simulate(lamda=lamda*rho, mu=mu, w=w, q=Q, rho=rho_dic, N=N_dic, pi_ent=pi_ent_dic,pi_hat=pi_hat_dic,
                                sim_len=k*sim_len, sims=1, sim_name='rho_weighted_MW',
                                j_policy='max_weight')
 
-            print '----------------------------------------------------------------------------------'
-            print k, rho, 'fifo', 'plain'
-            print '----------------------------------------------------------------------------------'
+            print( '----------------------------------------------------------------------------------')
+            print( k, rho, 'fifo', 'plain')
+            print( '----------------------------------------------------------------------------------')
 
             simulator.simulate(lamda=lamda*rho, mu=mu,  q=Q, rho=rho_dic, N=N_dic, pi_ent=pi_ent_dic,
                                pi_hat=pi_hat_dic, sim_len=k*sim_len, sims=1, sim_name='plain_FIFO')
 
-            print '----------------------------------------------------------------------------------'
-            print k,rho, 'max_weight', 'plain'
-            print '----------------------------------------------------------------------------------'
+            print( '----------------------------------------------------------------------------------')
+            print( k,rho, 'max_weight', 'plain')
+            print( '----------------------------------------------------------------------------------')
 
             simulator.simulate(lamda=lamda*rho, mu=mu, q=Q, rho=rho_dic, N=N_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic,
                                sim_len=k*sim_len, sims=1, sim_name='plain_MW', j_policy='max_weight')
 
-            print '----------------------------------------------------------------------------------'
-            print k,rho, 'prio', 'plain'
-            print '----------------------------------------------------------------------------------'
+            print( '----------------------------------------------------------------------------------')
+            print( k,rho, 'prio', 'plain')
+            print( '----------------------------------------------------------------------------------')
 
             simulator.simulate(lamda=lamda*rho, w=w_prio, mu=mu, q=Q, rho=rho_dic, N=N_dic,
                                pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, sim_len=k*sim_len, sims=1, sim_name='plain_prio',
@@ -849,7 +850,7 @@ def k_chains_exp():
 
                 wls, rho_m, rho_n = bipartite_workload_decomposition(Q, lamda, mu)
                 cur_max_rho = np.amax(rho_n)
-                print cur_max_rho
+                print( cur_max_rho)
                 lamda = (1./cur_max_rho) * lamda
                 wls, rho_m, rho_n = bipartite_workload_decomposition(Q, lamda, mu)
 
@@ -857,13 +858,13 @@ def k_chains_exp():
 
                 lamda_p = np.append(lamda*rho, mu.sum() - rho*lamda.sum())
                 Qp = sps.vstack((Q, np.ones((1, n))), format='csr')
-                print 'starting shelikhovskii'
+                print( 'starting shelikhovskii')
 
                 pi_ent = shelikhovskii(Qp, lamda_p, mu)
                 pi_ent = pi_ent.todense().A
-                print 'pi_ent_sums'
-                print pi_ent[:m,:].sum(axis=1) - lamda*rho
-                print pi_ent.sum(axis=0) - mu
+                print( 'pi_ent_sums')
+                print( pi_ent[:m,:].sum(axis=1) - lamda*rho)
+                print( pi_ent.sum(axis=0) - mu)
                 q_ent = pi_ent[:m, :]/pi_ent[m, :]
                 q_ent_i = (q_ent.T/q_ent.sum(axis=1)).T
                 q_ent_j = q_ent/q_ent.sum(axis=0)
@@ -878,12 +879,12 @@ def k_chains_exp():
                 Zps = Qp.dot(sps.diags(mu))
 
                 A,b,z, cols = transform_to_normal_form(Mps, Wps, Qp, Zps, lamda_p, mu)
-                pi_hat, duals = fast_primal_dual_algorithm(A, b, z, max_iter=10**9)
+                pi_hat, duals = fast_primal_dual_algorithm(A, b, z, max_iter=10**3)
                 pi_hat = pi_hat.reshape((m+1, n))
                 pi_hat = np.divide(pi_hat, Wp, out=np.zeros_like(pi_hat), where=Wp != 0)
-                print 'pi_hat_sums'
-                print pi_hat[:m, :].sum(axis=1) - lamda*rho
-                print pi_hat.sum(axis=0) - mu
+                print( 'pi_hat_sums')
+                print( pi_hat[:m, :].sum(axis=1) - lamda*rho)
+                print( pi_hat.sum(axis=0) - mu)
 
                 q_hat = pi_hat[:m, :]/pi_hat[m, :]
                 q_hat_i = (q_hat.T/q_hat.sum(axis=1)).T
@@ -892,45 +893,45 @@ def k_chains_exp():
                 w_i = np.divide(q_hat_i, q_ent_i, out=np.zeros_like(q_hat_i), where=q_ent_i != 0)
                 w_j = np.divide(q_hat_j, q_ent_j, out=np.zeros_like(q_hat_j), where=q_ent_i != 0)
 
-                print '----------------------------------------------------------------------------------'
-                print 1, exp_num, k, rho, 'fifo', 'rho_weighted_i'
-                print '----------------------------------------------------------------------------------'
+                print('----------------------------------------------------------------------------------')
+                print(1, exp_num, k, rho, 'fifo', 'rho_weighted_i')
+                print('----------------------------------------------------------------------------------')
 
                 simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_i, w_j=w_i, q=Q,
                                    rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
                                    chain_len=chain_len_dic, weighted=w_dic,
                                    sim_len=m*sim_len, sims=1, sim_name='rho_weighted_i_FIFO')
 
-                print '----------------------------------------------------------------------------------'
-                print 2, exp_num, k, rho, 'fifo', 'rho_weighted_j'
-                print '----------------------------------------------------------------------------------'
+                print('----------------------------------------------------------------------------------')
+                print(2, exp_num, k, rho, 'fifo', 'rho_weighted_j')
+                print('----------------------------------------------------------------------------------')
 
                 simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_j, w_j=w_j, q=Q,
                                    rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
                                    chain_len=chain_len_dic, weighted=w_dic,
                                    sim_len=m*sim_len, sims=1, sim_name='rho_weighted_j_FIFO')
 
-                print '----------------------------------------------------------------------------------'
-                print 3, exp_num, k, rho, 'fifo', 'rho_weighted_ij'
-                print '----------------------------------------------------------------------------------'
+                print('----------------------------------------------------------------------------------')
+                print(3, exp_num, k, rho, 'fifo', 'rho_weighted_ij')
+                print('----------------------------------------------------------------------------------')
 
                 simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_i, w_j=w_j, q=Q,
                                    rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
                                    chain_len=chain_len_dic, weighted=w_dic,
                                    sim_len=m*sim_len, sims=1, sim_name='rho_weighted_ij_FIFO')
 
-                print '----------------------------------------------------------------------------------'
-                print 4, exp_num, k, rho, 'fifo', 'plain'
-                print '----------------------------------------------------------------------------------'
+                print('----------------------------------------------------------------------------------')
+                print(4, exp_num, k, rho, 'fifo', 'plain')
+                print('----------------------------------------------------------------------------------')
 
                 simulator.simulate(lamda=lamda*rho, mu=mu,  q=Q,
                                    rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
                                    chain_len=chain_len_dic, weighted=nw_dic,
                                    sim_len=m*sim_len, sims=1, sim_name='plain_FIFO')
 
-                print '----------------------------------------------------------------------------------'
-                print 5, exp_num, k, rho, 'max_weight', 'rho_weighted_i'
-                print '----------------------------------------------------------------------------------'
+                print('----------------------------------------------------------------------------------')
+                print(5, exp_num, k, rho, 'max_weight', 'rho_weighted_i')
+                print('----------------------------------------------------------------------------------')
 
                 simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_i, w_j=w_i, q=Q,
                                    rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
@@ -938,9 +939,9 @@ def k_chains_exp():
                                    sim_len=m*sim_len, sims=1, sim_name='rho_weighted_i_MW',
                                    j_policy='max_weight')
 
-                print '----------------------------------------------------------------------------------'
-                print 6, exp_num, k, rho, 'max_weight', 'rho_weighted_i'
-                print '----------------------------------------------------------------------------------'
+                print('----------------------------------------------------------------------------------')
+                print(6, exp_num, k, rho, 'max_weight', 'rho_weighted_i')
+                print('----------------------------------------------------------------------------------')
 
                 simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_j, w_j=w_j, q=Q,
                                    rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
@@ -948,9 +949,9 @@ def k_chains_exp():
                                    sim_len=m*sim_len, sims=1, sim_name='rho_weighted_j_MW',
                                    j_policy='max_weight')
 
-                print '----------------------------------------------------------------------------------'
-                print 7, exp_num, k, rho, 'max_weight', 'rho_weighted_ij'
-                print '----------------------------------------------------------------------------------'
+                print('----------------------------------------------------------------------------------')
+                print(7, exp_num, k, rho, 'max_weight', 'rho_weighted_ij')
+                print('----------------------------------------------------------------------------------')
 
                 simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_i, w_j=w_j, q=Q,
                                    rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
@@ -958,9 +959,9 @@ def k_chains_exp():
                                    sim_len=m*sim_len, sims=1, sim_name='rho_weighted_ij_MW',
                                    j_policy='max_weight')
 
-                print '----------------------------------------------------------------------------------'
-                print 8, exp_num, k, rho, 'max_weight', 'plain'
-                print '----------------------------------------------------------------------------------'
+                print('----------------------------------------------------------------------------------')
+                print(8, exp_num, k, rho, 'max_weight', 'plain')
+                print('----------------------------------------------------------------------------------')
 
                 simulator.simulate(lamda=lamda*rho, mu=mu, q=Q,
                                    rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
@@ -1003,7 +1004,7 @@ def k_chains_exp_sim_len():
 
                 wls, rho_m, rho_n = bipartite_workload_decomposition(Q, lamda, mu)
                 cur_max_rho = np.amax(rho_n)
-                print cur_max_rho
+                print( cur_max_rho)
                 lamda = (1./cur_max_rho) * lamda
                 wls, rho_m, rho_n = bipartite_workload_decomposition(Q, lamda, mu)
 
@@ -1011,13 +1012,13 @@ def k_chains_exp_sim_len():
 
                 lamda_p = np.append(lamda*rho, mu.sum() - rho*lamda.sum())
                 Qp = sps.vstack((Q, np.ones((1, n))), format='csr')
-                print 'starting shelikhovskii'
+                print( 'starting shelikhovskii')
 
                 pi_ent = shelikhovskii(Qp, lamda_p, mu)
                 pi_ent = pi_ent.todense().A
-                print 'pi_ent_sums'
-                print pi_ent[:m,:].sum(axis=1) - lamda*rho
-                print pi_ent.sum(axis=0) - mu
+                print( 'pi_ent_sums')
+                print( pi_ent[:m,:].sum(axis=1) - lamda*rho)
+                print( pi_ent.sum(axis=0) - mu)
                 q_ent = pi_ent[:m, :]/pi_ent[m, :]
                 q_ent_i = (q_ent.T/q_ent.sum(axis=1)).T
                 q_ent_j = q_ent/q_ent.sum(axis=0)
@@ -1035,9 +1036,9 @@ def k_chains_exp_sim_len():
                 pi_hat, duals = fast_primal_dual_algorithm(A, b, z, max_iter=10**9)
                 pi_hat = pi_hat.reshape((m+1, n))
                 pi_hat = np.divide(pi_hat, Wp, out=np.zeros_like(pi_hat), where=Wp != 0)
-                print 'pi_hat_sums'
-                print pi_hat[:m, :].sum(axis=1) - lamda*rho
-                print pi_hat.sum(axis=0) - mu
+                print( 'pi_hat_sums')
+                print( pi_hat[:m, :].sum(axis=1) - lamda*rho)
+                print( pi_hat.sum(axis=0) - mu)
 
                 q_hat = pi_hat[:m, :]/pi_hat[m, :]
                 q_hat_i = (q_hat.T/q_hat.sum(axis=1)).T
@@ -1046,18 +1047,18 @@ def k_chains_exp_sim_len():
                 w_i = np.divide(q_hat_i, q_ent_i, out=np.zeros_like(q_hat_i), where=q_ent_i != 0)
                 w_j = np.divide(q_hat_j, q_ent_j, out=np.zeros_like(q_hat_j), where=q_ent_i != 0)
 
-                print '----------------------------------------------------------------------------------'
-                print 1, exp_num, k, rho, 'fifo', 'rho_weighted_i'
-                print '----------------------------------------------------------------------------------'
+                print( '----------------------------------------------------------------------------------')
+                print( 1, exp_num, k, rho, 'fifo', 'rho_weighted_i')
+                print( '----------------------------------------------------------------------------------')
 
                 simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_i, w_j=w_i, q=Q,
                                    rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
                                    chain_len=chain_len_dic, weighted=w_dic,
                                    sim_len=m*10**5, sims=1, sim_name='5,000,000')
 
-                print '----------------------------------------------------------------------------------'
-                print 1, exp_num, k, rho, 'fifo', 'rho_weighted_i'
-                print '----------------------------------------------------------------------------------'
+                print( '----------------------------------------------------------------------------------')
+                print( 1, exp_num, k, rho, 'fifo', 'rho_weighted_i')
+                print( '----------------------------------------------------------------------------------')
 
                 simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_i, w_j=w_i, q=Q,
                                    rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
@@ -1106,13 +1107,13 @@ def k_grid_exp():
 
                         wls, rho_m, rho_n = bipartite_workload_decomposition(Q, lamda, mu)
                         cur_max_rho = np.amax(rho_n)
-                        print cur_max_rho
+                        print( cur_max_rho)
                         lamda = (1./cur_max_rho) * lamda
                         wls, rho_m, rho_n = bipartite_workload_decomposition(Q, lamda, mu)
 
                     lamda_p = np.append(lamda*rho, mu.sum() - rho*lamda.sum())
                     Qp = sps.vstack((Q, np.ones((1, n))), format='csr')
-                    print 'starting shelikhovskii'
+                    print( 'starting shelikhovskii')
 
                     pi_ent = shelikhovskii(Qp, lamda_p, mu)
                     pi_ent = pi_ent.todense().A
@@ -1146,36 +1147,36 @@ def k_grid_exp():
                     w_i = np.divide(q_hat_i, q_ent_i, out=np.zeros_like(q_hat_i), where=q_ent_i != 0)
                     w_j = np.divide(q_hat_j, q_ent_j, out=np.zeros_like(q_hat_j), where=q_ent_i != 0)
 
-                    print '----------------------------------------------------------------------------------'
-                    print 1, k, rho, 'fifo', 'rho_weighted_i'
-                    print '----------------------------------------------------------------------------------'
+                    print( '----------------------------------------------------------------------------------')
+                    print( 1, k, rho, 'fifo', 'rho_weighted_i')
+                    print( '----------------------------------------------------------------------------------')
 
                     simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_i, w_j=w_i, q=Q,
                                        rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
                                        chain_len=chain_len_dic, weighted=w_dic,
                                        sim_len=m*sim_len, sims=1, sim_name='rho_weighted_i_FIFO')
 
-                    print '----------------------------------------------------------------------------------'
-                    print 2, k, rho, 'fifo', 'rho_weighted_j'
-                    print '----------------------------------------------------------------------------------'
+                    print( '----------------------------------------------------------------------------------')
+                    print( 2, k, rho, 'fifo', 'rho_weighted_j')
+                    print( '----------------------------------------------------------------------------------')
 
                     simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_j, w_j=w_j, q=Q,
                                        rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
                                        chain_len=chain_len_dic, weighted=w_dic,
                                        sim_len=m*sim_len, sims=1, sim_name='rho_weighted_j_FIFO')
 
-                    print '----------------------------------------------------------------------------------'
-                    print 3, k, rho, 'fifo', 'rho_weighted_ij'
-                    print '----------------------------------------------------------------------------------'
+                    print( '----------------------------------------------------------------------------------')
+                    print( 3, k, rho, 'fifo', 'rho_weighted_ij')
+                    print( '----------------------------------------------------------------------------------')
 
                     simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_i, w_j=w_j, q=Q,
                                        rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
                                        chain_len=chain_len_dic, weighted=w_dic,
                                        sim_len=m*sim_len, sims=1, sim_name='rho_weighted_ij_FIFO')
 
-                    print '----------------------------------------------------------------------------------'
-                    print 4, k, rho, 'max_weight', 'rho_weighted_i'
-                    print '----------------------------------------------------------------------------------'
+                    print( '----------------------------------------------------------------------------------')
+                    print( 4, k, rho, 'max_weight', 'rho_weighted_i')
+                    print( '----------------------------------------------------------------------------------')
 
                     simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_i, w_j=w_i, q=Q,
                                        rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
@@ -1183,9 +1184,9 @@ def k_grid_exp():
                                        sim_len=m*sim_len, sims=1, sim_name='rho_weighted_i_MW',
                                        j_policy='max_weight')
 
-                    print '----------------------------------------------------------------------------------'
-                    print 5, k, rho, 'max_weight', 'rho_weighted_i'
-                    print '----------------------------------------------------------------------------------'
+                    print( '----------------------------------------------------------------------------------')
+                    print( 5, k, rho, 'max_weight', 'rho_weighted_i')
+                    print( '----------------------------------------------------------------------------------')
 
                     simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_j, w_j=w_j, q=Q,
                                        rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
@@ -1193,9 +1194,9 @@ def k_grid_exp():
                                        sim_len=m*sim_len, sims=1, sim_name='rho_weighted_j_MW',
                                        j_policy='max_weight')
 
-                    print '----------------------------------------------------------------------------------'
-                    print 6, k, rho, 'max_weight', 'rho_weighted_ij'
-                    print '----------------------------------------------------------------------------------'
+                    print( '----------------------------------------------------------------------------------')
+                    print( 6, k, rho, 'max_weight', 'rho_weighted_ij')
+                    print( '----------------------------------------------------------------------------------')
 
                     simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_i, w_j=w_j, q=Q,
                                        rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
@@ -1203,18 +1204,18 @@ def k_grid_exp():
                                        sim_len=m*sim_len, sims=1, sim_name='rho_weighted_ij_MW',
                                        j_policy='max_weight')
 
-                    print '----------------------------------------------------------------------------------'
-                    print 7, k, rho, 'fifo', 'plain'
-                    print '----------------------------------------------------------------------------------'
+                    print( '----------------------------------------------------------------------------------')
+                    print( 7, k, rho, 'fifo', 'plain')
+                    print( '----------------------------------------------------------------------------------')
 
                     simulator.simulate(lamda=lamda*rho, mu=mu,  q=Q,
                                        rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
                                        chain_len=chain_len_dic, weighted=nw_dic,
                                        sim_len=m*sim_len, sims=1, sim_name='plain_FIFO')
 
-                    print '----------------------------------------------------------------------------------'
-                    print 8, k, rho, 'max_weight', 'plain'
-                    print '----------------------------------------------------------------------------------'
+                    print( '----------------------------------------------------------------------------------')
+                    print( 8, k, rho, 'max_weight', 'plain')
+                    print( '----------------------------------------------------------------------------------')
 
                     simulator.simulate(lamda=lamda*rho, mu=mu, q=Q,
                                        rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
@@ -1271,13 +1272,13 @@ def erdos_renyi_exp():
 
                         wls, rho_m, rho_n = bipartite_workload_decomposition(Q, lamda, mu)
                         cur_max_rho = np.amax(rho_n)
-                        print cur_max_rho
+                        print( cur_max_rho)
                         lamda = (1./cur_max_rho) * lamda
                         wls, rho_m, rho_n = bipartite_workload_decomposition(Q, lamda, mu)
 
                     lamda_p = np.append(lamda*rho, mu.sum() - rho*lamda.sum())
                     Qp = sps.vstack((Q, np.ones((1, n))), format='csr')
-                    print 'starting shelikhovskii'
+                    print( 'starting shelikhovskii')
 
                     pi_ent = shelikhovskii(Qp, lamda_p, mu)
                     pi_ent = pi_ent.todense().A
@@ -1311,36 +1312,36 @@ def erdos_renyi_exp():
                     w_i = np.divide(q_hat_i, q_ent_i, out=np.zeros_like(q_hat_i), where=q_ent_i != 0)
                     w_j = np.divide(q_hat_j, q_ent_j, out=np.zeros_like(q_hat_j), where=q_ent_i != 0)
 
-                    print '----------------------------------------------------------------------------------'
-                    print 1, rho, 'fifo', 'rho_weighted_i'
-                    print '----------------------------------------------------------------------------------'
+                    print( '----------------------------------------------------------------------------------')
+                    print( 1, rho, 'fifo', 'rho_weighted_i')
+                    print( '----------------------------------------------------------------------------------')
 
                     simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_i, w_j=w_i, q=Q,
                                        rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
                                        p=p_dic, weighted=w_dic,
                                        sim_len=m*sim_len, sims=1, sim_name='rho_weighted_i_FIFO')
 
-                    print '----------------------------------------------------------------------------------'
-                    print 2, rho, 'fifo', 'rho_weighted_j'
-                    print '----------------------------------------------------------------------------------'
+                    print( '----------------------------------------------------------------------------------')
+                    print( 2, rho, 'fifo', 'rho_weighted_j')
+                    print( '----------------------------------------------------------------------------------')
 
                     simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_j, w_j=w_j, q=Q,
                                        rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
                                        p=p_dic, weighted=w_dic,
                                        sim_len=m*sim_len, sims=1, sim_name='rho_weighted_j_FIFO')
 
-                    print '----------------------------------------------------------------------------------'
-                    print 3, rho, 'fifo', 'rho_weighted_ij'
-                    print '----------------------------------------------------------------------------------'
+                    print( '----------------------------------------------------------------------------------')
+                    print( 3, rho, 'fifo', 'rho_weighted_ij')
+                    print( '----------------------------------------------------------------------------------')
 
                     simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_i, w_j=w_j, q=Q,
                                        rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
                                        p=p_dic, weighted=w_dic,
                                        sim_len=m*sim_len, sims=1, sim_name='rho_weighted_ij_FIFO')
 
-                    print '----------------------------------------------------------------------------------'
-                    print 4, rho, 'max_weight', 'rho_weighted_i'
-                    print '----------------------------------------------------------------------------------'
+                    print( '----------------------------------------------------------------------------------')
+                    print( 4, rho, 'max_weight', 'rho_weighted_i')
+                    print( '----------------------------------------------------------------------------------')
 
                     simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_i, w_j=w_i, q=Q,
                                        rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
@@ -1348,9 +1349,9 @@ def erdos_renyi_exp():
                                        sim_len=m*sim_len, sims=1, sim_name='rho_weighted_i_MW',
                                        j_policy='max_weight')
 
-                    print '----------------------------------------------------------------------------------'
-                    print 5, rho, 'max_weight', 'rho_weighted_i'
-                    print '----------------------------------------------------------------------------------'
+                    print( '----------------------------------------------------------------------------------')
+                    print( 5, rho, 'max_weight', 'rho_weighted_i')
+                    print( '----------------------------------------------------------------------------------')
 
                     simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_j, w_j=w_j, q=Q,
                                        rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
@@ -1358,9 +1359,9 @@ def erdos_renyi_exp():
                                        sim_len=m*sim_len, sims=1, sim_name='rho_weighted_j_MW',
                                        j_policy='max_weight')
 
-                    print '----------------------------------------------------------------------------------'
-                    print 6, rho, 'max_weight', 'rho_weighted_ij'
-                    print '----------------------------------------------------------------------------------'
+                    print( '----------------------------------------------------------------------------------')
+                    print( 6, rho, 'max_weight', 'rho_weighted_ij')
+                    print( '----------------------------------------------------------------------------------')
 
                     simulator.simulate(lamda=lamda*rho, mu=mu, w_i=w_i, w_j=w_j, q=Q,
                                        rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
@@ -1368,18 +1369,18 @@ def erdos_renyi_exp():
                                        sim_len=m*sim_len, sims=1, sim_name='rho_weighted_ij_MW',
                                        j_policy='max_weight')
 
-                    print '----------------------------------------------------------------------------------'
-                    print 7, rho, 'fifo', 'plain'
-                    print '----------------------------------------------------------------------------------'
+                    print( '----------------------------------------------------------------------------------')
+                    print( 7, rho, 'fifo', 'plain')
+                    print( '----------------------------------------------------------------------------------')
 
                     simulator.simulate(lamda=lamda*rho, mu=mu,  q=Q,
                                        rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
                                        p=p_dic, weighted=nw_dic,
                                        sim_len=m*sim_len, sims=1, sim_name='plain_FIFO')
 
-                    print '----------------------------------------------------------------------------------'
-                    print 8, rho, 'max_weight', 'plain'
-                    print '----------------------------------------------------------------------------------'
+                    print( '----------------------------------------------------------------------------------')
+                    print( 8, rho, 'max_weight', 'plain')
+                    print( '----------------------------------------------------------------------------------')
 
                     simulator.simulate(lamda=lamda*rho, mu=mu, q=Q,
                                        rho=rho_dic, n=n_dic, m=m_dic, pi_ent=pi_ent_dic, pi_hat=pi_hat_dic, exp_num=exp_dic,
@@ -1415,19 +1416,19 @@ def test_w():
                                         [0., .5, 0., 0.],
                                         [0., 0., 1., 0.],
                                         [0., 0., 0., 1.]])))
-    print Z
+    print( Z)
     #transform_to_normal_form(M, W, Q, Z, row_sum, col_sum)
     A,b,z, cols = transform_to_normal_form(Mps, Wps, Qp, Z, lamda_p, mu)
-    print A.todense().A
-    print b
-    print z
+    print( A.todense().A)
+    print( b)
+    print( z)
     pi_hat1, duals1 = fast_primal_dual_algorithm(A, b, z)
     pi_hat1 = pi_hat1.reshape((m+1, n))
-    print pi_hat1
+    print( pi_hat1)
     A,b,z, cols = transform_to_normal_form(Mps, Wps, Qp, Qp, lamda_p, mu)
     pi_hat2, duals2 = fast_primal_dual_algorithm(A, b, z)
     pi_hat2 = pi_hat2.reshape((m+1, n))
-    print pi_hat2
+    print( pi_hat2)
     # tester = SimExperiment('W3')
     # tester.simulate(lamda=lamda, mu=mu, q=Q, sim_len=3*10**5, sims=3)
 
@@ -1445,7 +1446,7 @@ def service_time_dependency_experiment(m, n):
         wls, rho_m, rho_n = bipartite_workload_decomposition(Q, lamda, mu)
 
         max_rho = np.amax(rho_n)
-        print 'max_rho', max_rho
+        print( 'max_rho', max_rho)
 
     simulator = SimExperiment('k_chains')
 
@@ -1471,7 +1472,7 @@ def service_time_dependency_experiment(m, n):
     # simulator = SimExperiment('service_time_dependency_30_x_30_28_sims')
     #
     # for rho in np.array([0.5 + 0.1*i for i in range(5)] + [0.95, 0.97, 0.99]):
-    #     print rho
+    #     print( rho)
     #     lamda_p = np.append(lamda*rho, 1.0 - rho)
     #     pi_ent = shelikhovskii(Qp, lamda_p, mu)
     #
@@ -1496,7 +1497,7 @@ def service_time_dependency_experiment2(m, n):
         wls, rho_m, rho_n = bipartite_workload_decomposition(Q, lamda, mu)
 
         max_rho = np.amax(rho_n)
-        print 'max_rho', max_rho
+        print( 'max_rho', max_rho)
 
     simulator = SimExperiment('k_chains')
 
@@ -1522,7 +1523,7 @@ def service_time_dependency_experiment2(m, n):
     # simulator = SimExperiment('service_time_dependency_30_x_30_28_sims')
     #
     # for rho in np.array([0.5 + 0.1*i for i in range(5)] + [0.95, 0.97, 0.99]):
-    #     print rho
+    #     print( rho)
     #     lamda_p = np.append(lamda*rho, 1.0 - rho)
     #     pi_ent = shelikhovskii(Qp, lamda_p, mu)
     #
@@ -1571,7 +1572,7 @@ def k_chain_noise_experiment(m, n, k):
                     wls, rho_m, rho_n = bipartite_workload_decomposition(Q, lamda, mu)
                     if rho_n is not None:
                         max_rho = np.amax(rho_n)
-                    print 'max_rho', max_rho
+                    print( 'max_rho', max_rho)
 
                 lamda_p = np.append(lamda*rho, 1.0 - rho)
                 lamda_p = lamda_p/lamda_p.sum()
@@ -1605,10 +1606,10 @@ def two_chain_predictions():
         Qm = k_chain(n, n, 2)
         Qm[n-1, 0] = 0.
         if n == 5:
-            print 'Q'
-            print Q
-            print 'Qm'
-            print Qm
+            print( 'Q')
+            print( Q)
+            print( 'Qm')
+            print( Qm)
         sparse = sps.isspmatrix(Q)
 
         for k in range(5):
@@ -1622,17 +1623,17 @@ def two_chain_predictions():
                     while max_rho > 1.000000000001:
 
                         if noise_type == 'lamda':
-                            print noise_type
+                            print( noise_type)
                             lamda = np.ones(n) + np.random.uniform(-noise, noise, n)
                             lamda = lamda/lamda.sum()
                             mu = np.ones(n)/float(n)
                         if noise_type == 'mu':
-                            print noise_type
+                            print( noise_type)
                             lamda = np.ones(n)
                             mu = np.ones(n) + np.random.uniform(-noise, noise, n)
                             mu = mu/mu.sum()
                         if noise_type == 'both':
-                            print noise_type
+                            print( noise_type)
                             lamda = np.ones(n) + np.random.uniform(-noise, noise, n)
                             lamda = lamda/lamda.sum()
                             mu = np.ones(n) + np.random.uniform(-noise, noise, n)
@@ -1641,16 +1642,16 @@ def two_chain_predictions():
                         wls, rho_m, rho_n = bipartite_workload_decomposition(Qm, lamda, mu)
                         if rho_n is not None:
                             max_rho = np.amax(rho_n)
-                        print 'max_rho', max_rho
+                        print( 'max_rho', max_rho)
 
                     lamda_p = np.append(lamda*rho, 1.0 - rho)
-                    print lamda_p.sum()
+                    print( lamda_p.sum())
                     lamda_p = lamda_p/lamda_p.sum()
                     Qp = sps.vstack((Q, np.ones(n)), format='csr') if sparse else np.vstack((Q, np.ones(n)))
                     Qpm = sps.vstack((Qm, np.ones(n)), format='csr') if sparse else np.vstack((Qm, np.ones(n)))
-                    print 'start shelikhovskii'
+                    print( 'start shelikhovskii')
                     pi_ent = shelikhovskii(Qp, lamda_p, mu)
-                    print 'end shelikhovskii'
+                    print( 'end shelikhovskii')
                     r_ent = pi_ent[n, :]
                     pi_ent = pi_ent[:n, :]
                     pi_ent = pi_ent/pi_ent.sum()
@@ -1695,19 +1696,19 @@ def greenkhorn_test():
                 Md[i,j] = float(abs(i-j)) + 1.0
     M = sps.csr_matrix(Md)
     s = time()
-    print 'starting'
+    print( 'starting')
     Gd = greenkhorn_with_q(lamda, mu, Md, Qd, 1.0, numItermax=10)
-    print '-----------------------------------'
-    print 'dense', time() - s, 'sec'
-    # print Gd
-    # print Gd.sum(0)
-    # print Gd.sum(1)
+    print( '-----------------------------------')
+    print( 'dense', time() - s, 'sec')
+    # print( Gd)
+    # print( Gd.sum(0))
+    # print( Gd.sum(1))
     s = time()
     Gs = greenkhorn_with_q(lamda, mu, M, Q, 1.0, numItermax=10)
-    # print 'sparse', time() - s, 'sec'
-    # print Gs
-    # print Gs.sum(0)
-    # print Gs.sum(1)
+    # print( 'sparse', time() - s, 'sec')
+    # print( Gs)
+    # print( Gs.sum(0))
+    # print( Gs.sum(1))
 
 
 def weighted_entropy():
@@ -1716,13 +1717,13 @@ def weighted_entropy():
     lamda = np.ones(10)
     lamda = lamda/lamda.sum()
     mu = np.ones(10)*0.1
-    print lamda
-    print mu
+    print( lamda)
+    print( mu)
     wls, rho_m, rho_n = bipartite_workload_decomposition(q, lamda, mu)
     w = k_chain(10, 10, 4).multiply(np.random.uniform(0,1, (10, 10)))
     w = w.todense().A
     w = w/w.sum()
-    print type(w)
+    print( type(w))
     A, b, z, cols = transform_to_normal_form(0*q, sps.csr_matrix(w), q, q, lamda, mu)
     pi_hat1, duals = fast_primal_dual_algorithm(A, b, z, max_iter=10**9)
     pi_hat1 = pi_hat1.reshape((10, 10))
@@ -1734,7 +1735,7 @@ def weighted_entropy():
     pi_hat2 = pi_hat2.reshape((10, 10))
     pi_hat2 = np.divide(pi_hat2, w, out=np.zeros_like(pi_hat1), where=w != 0)
     for i,j in sorted(zip(*w.nonzero()), key=lambda x: (x[0], x[1])):
-         print (i,j),w[i,j]-0.01*((i == 0) * (j == 0)), w[i,j], pi_ent[i,j],pi_hat1[i,j], pi_hat2[i,j],pi_hat1[i,j] > pi_hat2[i,j]
+         print( (i,j),w[i,j]-0.01*((i == 0) * (j == 0)), w[i,j], pi_ent[i,j],pi_hat1[i,j], pi_hat2[i,j],pi_hat1[i,j] > pi_hat2[i,j])
 
 
 def check_shli():
@@ -1744,7 +1745,7 @@ def check_shli():
     lamda = lamda/lamda.sum()
     mu = np.ones(10)*0.1
     pi_ent = shelikhovskii(q, lamda, mu)
-    print pi_ent
+    print( pi_ent)
 
 
 if __name__ == '__main__':
@@ -1752,8 +1753,8 @@ if __name__ == '__main__':
     #fifo_flaw2()
     #flexible_queueing_system(30, 30, 0.8)
     #k_chain_experiment(30, 30, 7)
-    # print sum([14.,15.,16.,17.,8.,20.])
-    # print sum([4., 25., 6., 27., 8., 20.])
+    # print( sum([14.,15.,16.,17.,8.,20.]))
+    # print( sum([4., 25., 6., 27., 8., 20.]))
     # lamda = np.array([14.,15.,16.,17.,8.,20.])
     # mu = np.array([4., 25., 6., 27., 8., 20.])
     # q = np.array([[1,1,1,0,0,0],
@@ -1766,9 +1767,9 @@ if __name__ == '__main__':
     # p_dic,p = matching_rate_calculator(lamda, mu, q)
     # tot = 0.0
     # for key, item in p_dic.iteritems():
-    #     print key, item['rcs-aw']
+    #     print( key, item['rcs-aw'])
     #     tot += item['rcs-aw']
-    # print p
+    # print( p)
     #
     # adan_weiss = SimExperiment('adan_wiess')
     # adan_weiss.simulate(lamda=lamda, mu=mu, q=q, sims=30, sim_len=10**6)
@@ -1776,7 +1777,7 @@ if __name__ == '__main__':
     # reses_i = get_file_data('adan_wiess', 'reses_i')
     # reses_ij = get_file_data('adan_wiess', 'reses_ij')
     # reses_ij[['MR_ij_sim']] = 90.*reses_ij['MR_ij_sim']
-    # print reses_ij[['i','j','MR_ij_sim']]
+    # print( reses_ij[['i','j','MR_ij_sim']])
     #increasing_system()
     k_chains_exp()
     #power_of_an_arc()

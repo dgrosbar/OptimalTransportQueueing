@@ -155,7 +155,7 @@ def online_matching_simulator(lamda, q, w_i=None, w_j=None, eta=None, prt=False,
 
     for k in range(sims):
 
-        print 'starting sim ', k+1
+        print('starting sim ', k+1)
 
         start_time = [time()]
 
@@ -184,8 +184,8 @@ def online_matching_simulator(lamda, q, w_i=None, w_j=None, eta=None, prt=False,
         sim_time = interarrival_times.sum()
         simulate()
 
-        print 'matching rates', sps.csr_matrix(matching_rates_node[k])
-        print 'ending queueing sim ', k+1, 'duration:', time() - start_time[0]
+        print('matching rates', sps.csr_matrix(matching_rates_node[k]))
+        print('ending queueing sim ', k+1, 'duration:', time() - start_time[0])
 
     return dict(zip(
         ['matching_rates_node',
@@ -224,10 +224,10 @@ class SimExperiment(object):
                 os.mkdir(self.dir)
 
             for name, res in zip(['reses_ij', 'reses_i', 'reses_j'], [reses_ij, reses_i, reses_j]):
-                # print name
-                # print res
+                # print(name)
+                # print(res)
                 filename = self.dir + '/' + name + '.csv'
-                # print 'filename', filename
+                # print('filename', filename)
                 if os.path.exists(filename):
                     tmp_res = pd.DataFrame.from_csv(filename)
                     tmp_res = pd.concat((tmp_res, res))
@@ -354,7 +354,7 @@ class MultiSim(object):
             self.s_servers = [[0 for _ in self.rn], [0 for _ in self.rn]]
             self.k = k
 
-            print 'sim_len', self.sim_len, 'arrivals'
+            print('sim_len', self.sim_len, 'arrivals')
 
             if self.base_seed is not None:
                 np.random.seed(self.base_seed + k*10*self.sim_len)
@@ -365,7 +365,7 @@ class MultiSim(object):
 
             self.c_stream = zip(customer_arrivals, interarrival_times, customer_service_time_pct)
 
-            print 'total work load arrival rate is:', (self.lamda*self.S).sum()
+            print('total work load arrival rate is:', (self.lamda*self.S).sum())
 
             self.sim_time = int(interarrival_times.sum())
             self.log_periods[1, k] = self.sim_time
@@ -373,7 +373,7 @@ class MultiSim(object):
             self.env.process(self.event_stream())
             self.env.run(until=self.sim_time)
 
-            print 'ending queueing sim ', k+1, 'duration:', time() - self.start_time
+            print('ending queueing sim ', k+1, 'duration:', time() - self.start_time)
 
     def event_stream(self):
 
@@ -382,9 +382,9 @@ class MultiSim(object):
             self.arrival_count += 1
 
             if self.arrival_count > 0 and self.arrival_count % self.report_every == 0:
-                print self.arrival_count, 'customers arrived - time_elapsed:', time() - self.start_time
-                print 'assignment_count is:', self.assignment_count
-                print 'logging is:', self.logging
+                print(self.arrival_count, 'customers arrived - time_elapsed:', time() - self.start_time)
+                print('assignment_count is:', self.assignment_count)
+                print('logging is:', self.logging)
 
             i, time_to_arrival, service_time_pct = customer_arrival
 
@@ -450,8 +450,8 @@ class MultiSim(object):
 
         if not self.logging:
             if self.assignment_count > self.warm_up:
-                print 'assignment_count', self.assignment_count
-                print 'warm_up', self.warm_up
+                print('assignment_count', self.assignment_count)
+                print('warm_up', self.warm_up)
                 self.logging = True
                 self.log_periods[0, self.k] = self.env.now
                 self.log_start = self.env.now
@@ -527,14 +527,14 @@ class MultiSim(object):
             for y in self.gini:
                 n = len(y)
                 y = np.array([heapq.heappop(y) for _ in range(n)])
-                print y
-                print y*np.arange(1, n+1, 1)
-                print 2*(y*np.arange(1, n+1, 1)).sum()
-                print y.sum()
-                print n*y.sum()
+                print(y)
+                print(y*np.arange(1, n+1, 1))
+                print(2*(y*np.arange(1, n+1, 1)).sum())
+                print(y.sum())
+                print(n*y.sum())
                 print (((2*y*np.arange(1, n+1, 1)).sum())/(n*y.sum())) - ((n+1)/n)
                 full_ginis.append((((2*y*np.arange(1, n+1, 1)).sum())/(n*y.sum())) - ((n+1)/n))
-                print sum(full_ginis)/float(len(full_ginis))
+                print(sum(full_ginis)/float(len(full_ginis)))
             reses_i.loc[:, 'full_gini'] = sum(full_ginis)/float(len(full_ginis))
 
         sim_attr = ['interarrival_dist','service_dist', 'abandonment_dist', 'i_policy', 'j_policy', 'sim_name']
@@ -578,7 +578,7 @@ class MultiSim(object):
                              'std': matching_rates_ij.std(axis=1),
                              'count': self.matching_rates.mean(axis=1)}
 
-        # print matching_rates_ij['count'].shape
+        # print(matching_rates_ij['count'].shape)
 
         for loc, name in zip([0, 1, 2], ['MR_ij', 'MR_i_c_j', 'MR_j_c_i']):
             for stat in ['mean', 'count', 'std']:
@@ -592,7 +592,7 @@ class MultiSim(object):
 
         waiting_time_ij = self.waiting_times
 
-        # print 'total_waiting_time:', waiting_time_ij[0].sum()
+        # print('total_waiting_time:', waiting_time_ij[0].sum())
 
         waiting_time_ij = np.divide(waiting_time_ij, self.matching_rates[0],
                                     out=np.zeros_like(waiting_time_ij), where=waiting_time_ij != 0)
@@ -667,7 +667,7 @@ class MultiSim(object):
 
         queue_lengths_i = self.queue_lengths
 
-        # print 'total_queue_lengths:', queue_lengths_i[0].sum()
+        # print('total_queue_lengths:', queue_lengths_i[0].sum())
 
         queue_lengths_i = queue_lengths_i/sim_times.reshape((1, self.sims, 1))
 
@@ -730,9 +730,9 @@ class MultiSim(object):
 #             arrival_count += 1
 #
 #             if arrival_count > 0 and arrival_count % report_every == 0:
-#                 print arrival_count, 'customers arrived - time_elapsed:', time() - start_time[0]
-#                 print 'assignment_count is:', ASSIGNMENT_COUNT
-#                 print 'log[0] is:', log[0]
+#                 print(arrival_count, 'customers arrived - time_elapsed:', time() - start_time[0])
+#                 print('assignment_count is:', ASSIGNMENT_COUNT)
+#                 print('log[0] is:', log[0])
 #
 #             i = customer_arrival[0]
 #
@@ -788,8 +788,8 @@ class MultiSim(object):
 #
 #         if not log[0]:
 #             if ASSIGNMENT_COUNT > warm_up:
-#                 print 'ASSIGNMENT_COUNT', ASSIGNMENT_COUNT
-#                 print 'warm_up', warm_up
+#                 print('ASSIGNMENT_COUNT', ASSIGNMENT_COUNT)
+#                 print('warm_up', warm_up)
 #                 log[0] = True
 #                 log_periods[0, K] = ENV.now
 #
@@ -839,7 +839,7 @@ class MultiSim(object):
 #
 #     def run_sim(k):
 #
-#         print 'starting sim ', k+1
+#         print('starting sim ', k+1)
 #
 #         start_time = [time()]
 #         ENV = simpy.Environment()
@@ -849,7 +849,7 @@ class MultiSim(object):
 #         ASSIGNMENT_COUNT = 0
 #         log = [False]
 #
-#         print 'sim_len', sim_len, type(sim_len)
+#         print('sim_len', sim_len, type(sim_len))
 #
 #         total_rate = np.asscalar(lamda.sum())
 #         arrival_ratios = lamda*(1/total_rate)
@@ -857,7 +857,7 @@ class MultiSim(object):
 #         interarrival_times = np.random.exponential(scale=1/total_rate, size=sim_len)
 #         c_stream = zip(customer_arrivals, interarrival_times)
 #
-#         print 'total work load arrival rate is:', lamda*S.sum()
+#         print('total work load arrival rate is:', lamda*S.sum())
 #
 #         sim_time = int(interarrival_times.sum())
 #         log_periods[1, k] = sim_time
@@ -865,7 +865,7 @@ class MultiSim(object):
 #         ENV.process(arrival())
 #         ENV.run(until=sim_time)
 #
-#         print 'ending queueing sim ', k+1, 'duration:', time() - start_time[0]
+#         print('ending queueing sim ', k+1, 'duration:', time() - start_time[0])
 #
 #     sim_reses = {'lambda': lamda, 'mu': mu, 'S': S, 'W': w, 'eta': eta, 'policy': policy,
 #                  'matching_rates': matching_rates,'waiting_times': waiting_times,
@@ -896,14 +896,14 @@ class MultiSim(object):
 #
 #     for i in range(m*n):
 #         if match_rates[i] > 10 and wait_times[i] > 0:
-#             print wait_times[i]
+#             print(wait_times[i])
 #             wait_time_grid_demand[nodes[i][0]] = log(wait_times[i])
 #         if match_rates[m*n + i] > 10 and wait_times[m*n + i] > 0:
-#             print wait_times[m*n + i]
+#             print(wait_times[m*n + i])
 #             wait_time_grid_supply[nodes[i][0]] = log(wait_times[m*n + i])
 #
-#     print sps.csr_matrix(wait_time_grid_demand)
-#     print sps.csr_matrix(wait_time_grid_supply)
+#     print(sps.csr_matrix(wait_time_grid_demand))
+#     print(sps.csr_matrix(wait_time_grid_supply))
 #
 #     fig, ((ax1, ax2, ax3, ax4), (ax5, ax6, ax7, ax8)) = plt.subplots(2, 4)
 #     ax1.imshow(g['lamda_d_pdf'], interpolation='nearest')
